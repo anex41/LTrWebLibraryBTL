@@ -1,10 +1,10 @@
 ﻿create database libraryDB
 use libraryDB
-
+drop database libraryDB
 
 /* tạo bảng người dùng */
 
-create table tblLibaryUser (
+create table tblLibraryUser (
 	userId int identity(1,1) NOT NULL,
 	userAccount varchar (30) NOT NULL,
 	userPassword varchar(256) NOT NULL,
@@ -15,7 +15,7 @@ create table tblLibaryUser (
 	userRole int NOT NULL
 );
 
-drop table tblLibaryUser
+drop table tblLibraryUser
 
 /* tạo bảng thư viện */
 
@@ -25,6 +25,8 @@ create table tblLibrary (
 	libraryAddress nvarchar(30) NOT NULL
 )
 
+drop table tblLibrary
+
 /* tạo bảng liên kết giữa người dùng và thư viện */
 
 create table tblUserAndLibrary (
@@ -32,6 +34,8 @@ create table tblUserAndLibrary (
 	libraryId int NOT NULL,
 	statusFlag bit NOT NULL
 )
+
+drop table tblUserAndLibrary
 
 /* tạo proc thêm người dùng */
 
@@ -46,7 +50,7 @@ create proc addLibraryUser
 @libraryId int
 as
 	BEGIN
-		insert into tblLibaryUser
+		insert into tblLibraryUser
 		values (@userAccount,@userPassword,@userDisplayName,@userEmail,@userAddress,@userStatus,@serRole);
 
 		insert into tblUserAndLibrary
@@ -79,7 +83,25 @@ as
 		from tblLibraryUser
 	end
 
-/* tạo proc thêm người dùng */
+/* tạo proc lấy thông tin người dùng qua username */
+
+create proc getLibraryUserByAccount
+@account varchar(30),
+@library int
+as
+	BEGIN
+		select tblLibraryUser.userId, tblLibraryUser.userAccount, tblLibraryUser.userPassword,
+			tblLibraryUser.userDisplayName, tblLibraryUser.userStatus, tblLibraryUser.userRole,
+			tblUserAndLibrary.statusFlag
+		from tblLibraryUser, tblUserAndLibrary
+		where tblLibraryUser.userAccount = @account and tblUserAndLibrary.userId = tblLibraryUser.userId
+			and tblUserAndLibrary.libraryId = @library
+	END
+
+drop proc getLibraryUserByAccount
+
+exec getLibraryUserByAccount @account="vinhnguyen", @library = 1
+
 /* tạo proc thêm người dùng */
 /* tạo proc thêm người dùng */
 /* tạo proc thêm người dùng */
