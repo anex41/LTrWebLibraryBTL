@@ -1,7 +1,12 @@
 ﻿/* Move down content because we have a fixed navbar that is 50px tall */
+html {
+    height: 100%;
+}
+
 body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+    position: relative;
+    min-height: 100%;
+    padding-top: 80px;
 }
 
 /* Wrapping element */
