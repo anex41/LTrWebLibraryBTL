@@ -33,6 +33,14 @@ create table tblUserAndLibrary (
 	statusFlag bit NOT NULL
 )
 
+create table tblBook(
+	bookId int not null,
+	bookName nvarchar (50) not null,
+	bookAmount float not null,
+	bookType nvarchar (50) not null,
+
+)
+
 /* tạo proc thêm người dùng */
 
 create proc addLibraryUser
