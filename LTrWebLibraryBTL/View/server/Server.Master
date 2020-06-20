@@ -1,6 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="BTlLayout.master.cs" Inherits="LTrWebLibraryBTL.View.BTlLayout" %>
-
-<%@ Register TagPrefix="User" TagName="DangNhap" Src="~/UserControl/LoginUserControl.ascx" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Server.master.cs" Inherits="LTrWebLibraryBTL.View.server.Server" %>
 
 <!DOCTYPE html>
 
@@ -32,6 +30,7 @@
     </form>
     <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light fixed-top" style="height: 80px;">
         <div class="container-fluid">
+
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -64,7 +63,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <User:DangNhap ID="UserControlDangNhap" runat="server" />
+                    <%--<User:DangNhap ID="UserControlDangNhap" runat="server" />--%>
                 </div>
             </div>
         </div>
@@ -77,3 +76,4 @@
     </script>
 </body>
 </html>
+
