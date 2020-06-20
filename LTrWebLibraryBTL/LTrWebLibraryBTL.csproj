@@ -169,7 +169,9 @@
     <Content Include="Scripts\esm\popper-utils.js.map" />
     <Content Include="Scripts\toastController.js" />
     <Content Include="Services\LoginServices.asmx" />
+    <Content Include="Services\UserServices.asmx" />
     <Content Include="UserControl\LoginUserControl.ascx" />
+    <Content Include="UserControl\ReaderUserControl.ascx" />
     <Content Include="View\common\TrangChu.aspx" />
     <Content Include="View\server\ServerSideControl.aspx" />
     <Content Include="Wellcome.aspx" />
@@ -315,6 +317,10 @@
       <DependentUpon>LoginServices.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Services\UserServices.asmx.cs">
+      <DependentUpon>UserServices.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -335,6 +341,13 @@
     </Compile>
     <Compile Include="UserControl\LoginUserControl.ascx.designer.cs">
       <DependentUpon>LoginUserControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\ReaderUserControl.ascx.cs">
+      <DependentUpon>ReaderUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControl\ReaderUserControl.ascx.designer.cs">
+      <DependentUpon>ReaderUserControl.ascx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

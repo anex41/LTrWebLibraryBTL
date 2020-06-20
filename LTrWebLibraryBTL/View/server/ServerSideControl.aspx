@@ -1,10 +1,12 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/View/server/Server.Master" AutoEventWireup="true" CodeBehind="ServerSideControl.aspx.cs" Inherits="LTrWebLibraryBTL.View.server.ServerSideControl" %>
+﻿<%@ Page Title="Quản lý" Language="C#" MasterPageFile="~/View/server/Server.Master" AutoEventWireup="true" CodeBehind="ServerSideControl.aspx.cs" Inherits="LTrWebLibraryBTL.View.server.ServerSideControl" %>
+
+<%@ Register TagPrefix="ServerSide" TagName="Quanlynguoidung" Src="~/UserControl/ReaderUserControl.ascx" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="BTLContent" runat="server">
     <style>
-        .productSideNav {
+        .ServerSideNav {
             background-color: #343a40;
-            width: 25vw;
+            width: 22vw;
             transition: all 1s;
         }
 
@@ -13,19 +15,19 @@
             transition: all 1s;
         }
 
-        .productContent {
-            margin-left: 25vw;
+        .ServerContent {
+            margin-left: 22vw;
             transition: all 1s;
         }
 
-        .productContentTog {
+        .ServerContentTog {
             margin-left: 5vw;
             transition: all 1s;
         }
 
         .toogleButtonStyle {
             background-color: #343a40;
-            left: 24.9vw;
+            left: 21.9vw;
             border-top-right-radius: 15px;
             border-bottom-right-radius: 15px;
             top: 80px;
@@ -37,15 +39,15 @@
             transition: all 1s;
         }
     </style>
-    <div id="productSideNav" class="productSideNav position-fixed border-right border-secondary" style="height: calc(100% - 80px);">
+    <div id="ServerSideNav" class="ServerSideNav position-fixed border-right border-secondary" style="height: calc(100% - 80px);">
         <div class="row m-0">
             <div class="col-sm-12" style="height: 50px;">
                 <div class="row mx-0 my-auto h-100" onclick="changeView('add')" style="cursor: pointer;">
                     <div class="sideNavTitle col-sm-10 m-auto">
-                        <a class="text-white col-sm-12 my-2">Thêm sản phẩm</a>
+                        <a class="text-white col-sm-12 my-2">Quản lý người dùng</a>
                     </div>
                     <div class=" p-0 my-auto text-center">
-                        <i class="text-white fas fa-plus-square" style="font-size: 25px;"></i>
+                        <i class="text-white fas fa-book-reader" style="font-size: 25px;"></i>
                     </div>
                 </div>
             </div>
@@ -53,10 +55,10 @@
             <div class="col-sm-12" style="height: 50px;">
                 <div class="row mx-0 my-auto h-100" onclick="changeView('edit')" style="cursor: pointer;">
                     <div class="sideNavTitle col-sm-10 m-auto">
-                        <a class="text-white col-sm-12 my-2">Sửa nội dung sản phẩm</a>
+                        <a class="text-white col-sm-12 my-2">Quản lý sách</a>
                     </div>
                     <div class=" p-0 my-auto text-center">
-                        <i class="text-white fas fa-pen" style="font-size: 25px;"></i>
+                        <i class="text-white fas fa-book" style="font-size: 25px;"></i>
                     </div>
                 </div>
             </div>
@@ -64,37 +66,23 @@
             <div class="col-sm-12" style="height: 50px;">
                 <div class="row mx-0 my-auto h-100" onclick="changeView('disapprove')" style="cursor: pointer;">
                     <div class="sideNavTitle col-sm-10 m-auto">
-                        <a class="text-white col-sm-12 my-2">Hủy duyệt sản phẩm</a>
+                        <a class="text-white col-sm-12 my-2">Quản lý phiểu mượn</a>
                     </div>
                     <div class=" p-0 my-auto text-center">
-                        <i class="text-white fas fa-times-circle" style="font-size: 25px;"></i>
-                    </div>
-                </div>
-            </div>
-            <hr class="w-100 bg-white my-1" />
-            <div class="col-sm-12" style="height: 50px;">
-                <div class="row mx-0 my-auto h-100" onclick="changeView('approve')" style="cursor: pointer;">
-                    <div class="sideNavTitle col-sm-10 m-auto">
-                        <a class="text-white col-sm-12 my-2">Duyệt sản phẩm</a>
-                    </div>
-                    <div class=" p-0 my-auto text-center">
-                        <i class="text-white fas fa-check-double" style="font-size: 25px;"></i>
+                        <i class="text-white fas fa-clipboard" style="font-size: 25px;"></i>
                     </div>
                 </div>
             </div>
             <hr class="w-100 bg-white my-1" />
         </div>
     </div>
-    <div id="productContent" class="productContent">
+    <div id="ServerContent" class="ServerContent">
         <div id="sideNavToogleBtn" class="position-fixed text-danger toogleButtonStyle p-2" style="z-index: 2;" onclick="toggleSideNav()">
             <i id="faId" class="text-white fas fa-caret-left"></i>
         </div>
         <div class="row mx-0">
             <div id="productAddDiv" class="addProductDiv container-fluid">
-                <div class="text-primary text-center col-sm-12 position-relative">
-                    <h1>Nội dung</h1>
-                </div>
-                Thêm
+                <ServerSide:Quanlynguoidung id="UCQuanLyNguoiDung" runat="server" />
                 <%--<product:add id="ProductAdd" clientidmode="static" runat="server"></product:add>--%>
             </div>
             <div hidden id="productEditDiv" class="editProductDiv container-fluid">
@@ -127,8 +115,8 @@
             $(".sideNavTitle ").show();
             $("#sideNavCloseBtn").removeAttr("hidden");
             $("#sideNavOpenBtn").attr("hidden", true);
-            document.getElementById("productSideNav").classList.toggle('sideNavTog');
-            document.getElementById("productContent").classList.toggle('productContentTog');
+            document.getElementById("ServerSideNav").classList.toggle('sideNavTog');
+            document.getElementById("ServerContent").classList.toggle('ServerContentTog');
             document.getElementById("sideNavToogleBtn").classList.toggle('toogleButtonTog');
             fontAwesome.classList.remove("fa-caret-right");
             fontAwesome.classList.add("fa-caret-left");
@@ -139,8 +127,8 @@
             $(".sideNavTitle ").hide();
             $("#sideNavOpenBtn").removeAttr("hidden");
             $("#sideNavCloseBtn").attr("hidden", true);
-            document.getElementById("productSideNav").classList.toggle('sideNavTog');
-            document.getElementById("productContent").classList.toggle('productContentTog');
+            document.getElementById("ServerSideNav").classList.toggle('sideNavTog');
+            document.getElementById("ServerContent").classList.toggle('ServerContentTog');
             document.getElementById("sideNavToogleBtn").classList.toggle('toogleButtonTog');
             fontAwesome.classList.remove("fa-caret-left");
             fontAwesome.classList.add("fa-caret-right");

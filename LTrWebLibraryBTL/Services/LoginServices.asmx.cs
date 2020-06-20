@@ -27,7 +27,7 @@ namespace LTrWebLibraryBTL.Services
         [WebMethod(enableSession: true)]
         public int UserLogin(string username, string password, string library)
         {
-            string tblpass = "", role = "";
+            string tblpass = "", role = "", account = "";
             var hashedPassword = HashString(password).ToLower();
             SqlCommand cmd = new SqlCommand("getLibraryUserByAccount", con);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -43,6 +43,7 @@ namespace LTrWebLibraryBTL.Services
                 {
                     tblpass = (rdr["userPassword"].ToString());
                     role = (rdr["userRole"].ToString());
+                    account = (rdr["userAccount"].ToString());
                 }
                 con.Close();
             }
@@ -53,6 +54,8 @@ namespace LTrWebLibraryBTL.Services
             }
             if (string.Compare(hashedPassword, tblpass) == 0)
             {
+                Session["currentAccount"] = account;
+                Session["currentLibrary"] = library;
                 return 1;
             }
             else
