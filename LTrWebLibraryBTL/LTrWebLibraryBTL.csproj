@@ -174,7 +174,6 @@
     <Content Include="UserControl\ReaderUserControl.ascx" />
     <Content Include="View\common\TrangChu.aspx" />
     <Content Include="View\server\ServerSideControl.aspx" />
-    <Content Include="Wellcome.aspx" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
     <Content Include="Scripts\jquery-3.5.1.min.js" />
@@ -383,13 +382,6 @@
     </Compile>
     <Compile Include="View\server\ServerSideControl.aspx.designer.cs">
       <DependentUpon>ServerSideControl.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Wellcome.aspx.cs">
-      <DependentUpon>Wellcome.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Wellcome.aspx.designer.cs">
-      <DependentUpon>Wellcome.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
