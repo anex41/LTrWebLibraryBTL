@@ -7,7 +7,8 @@
 <html>
 <head runat="server">
     <meta charset="utf-8" />
-    <title><%: Page.Title %> - BTL nhóm x</title>
+    <title><%: Page.Title %> - Thư Viện Sách</title>
+    <link rel="stylesheet" href="/Content/style-1.css">
 
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
@@ -32,27 +33,88 @@
     </form>
     <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light fixed-top" style="height: 80px;">
         <div class="container-fluid">
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Trang chủ <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Không phải trang chủ</a>
-                    </li>
-                </ul>
-                <div class="text-right">
-                    <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#LoginModal">Đăng nhập</button>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="#">Thư Viện Sách</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Trang chủ<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">Thể Loại Sách
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Giới thiệu</a>
+                        </li>
+                    </ul>
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm gì đó?" aria-label="Search">
+                        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+                    </form>
                 </div>
+            </nav>
+            <div class="text-right">
+                <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#LoginModal">Đăng nhập</button>
             </div>
         </div>
     </nav>
     <div>
         <asp:ContentPlaceHolder ID="BTLContent" runat="server">
+
         </asp:ContentPlaceHolder>
+        <div class="container content">
+            <h2 class="text-center">Thư Viện Online Xịn Xò Con Bò</h2>
+            <p class="lead text-center"> Thư viện Online là nơi bạn có thể mượn sách để đọc và chia sẻ kiến thức. </p>
+            <hr>
+            <ul class="center-block row" style="list-style-type: none">
+                <li class="cat-item col-xs-12 col-md-4 col-sm-6"><a href="#"><i class="fas fa-book"></i> Tâm Lý - Kỹ Năng Sống</a></li>
+                <li class="cat-item col-xs-12 col-md-4 col-sm-6"><a href="#"><i class="fas fa-book"></i> Kinh Tế - Quản Lý</a></li>
+                <li class="cat-item col-xs-12 col-md-4 col-sm-6"><a href="#"><i class="fas fa-book"></i> Marketing - Bán hàng </a></li>
+                <li class="cat-item col-xs-12 col-md-4 col-sm-6"><a href="#"><i class="fas fa-book"></i> Y Học - Sức Khỏe</a></li>
+                <li class="cat-item col-xs-12 col-md-4 col-sm-6"><a href="#"><i class="fas fa-book"></i> Học Ngoại Ngữ</a></li>
+                <li class="cat-item col-xs-12 col-md-4 col-sm-6"><a href="#"><i class="fas fa-book"></i> Khoa Học - Kỹ Thuật</a></li>
+                <li class="cat-item col-xs-12 col-md-4 col-sm-6"><a href="#"><i class="fas fa-book"></i> Thể Thao - Nghệ Thuật</a></li>
+                <li class="cat-item col-xs-12 col-md-4 col-sm-6"><a href="#"><i class="fas fa-book"></i> Trinh Thám - Hình Sự</a></li>
+                <li class="cat-item col-xs-12 col-md-4 col-sm-6"><a href="#"><i class="fas fa-book"></i> Văn Hóa - Tôn Giáo</a></li>
+                <li class="cat-item col-xs-12 col-md-4 col-sm-6"><a href="#"><i class="fas fa-book"></i> Tử Vi - Phong Thủy</a></li>
+                <li class="cat-item col-xs-12 col-md-4 col-sm-6"><a href="#"><i class="fas fa-book"></i> Lịch Sử - Chính Trị</a></li>
+                <li class="cat-item col-xs-12 col-md-4 col-sm-6"><a href="#"><i class="fas fa-book"></i> Văn Học Việt Nam</a></li>
+                <li class="cat-item col-xs-12 col-md-4 col-sm-6"><a href="#"><i class="fas fa-book"></i> Truyện Ngắn - Ngôn Tình</a></li>
+                <li class="cat-item col-xs-12 col-md-4 col-sm-6"><a href="#"><i class="fas fa-book"></i> Truyện Cười - Tiếu Lâm</a></li>
+                <li class="cat-item col-xs-12 col-md-4 col-sm-6"><a href="#"><i class="fas fa-book"></i> Tiểu Thuyết Phương Tây</a></li>
+                <li class="cat-item col-xs-12 col-md-4 col-sm-6"><a href="#"><i class="fas fa-book"></i> Truyện Ma - Truyện Kinh Dị</a></li>
+                <li class="cat-item col-xs-12 col-md-4 col-sm-6"><a href="#"><i class="fas fa-book"></i> Huyền bí - Giả Tưởng</a></li>
+                <li class="cat-item col-xs-12 col-md-4 col-sm-6"><a href="#"><i class="fas fa-book"></i> Hồi Ký - Tuỳ Bút</a></li>
+                <li class="cat-item col-xs-12 col-md-4 col-sm-6"><a href="#"><i class="fas fa-book"></i> Phiêu Lưu - Mạo Hiểm</a></li>
+                <li class="cat-item col-xs-12 col-md-4 col-sm-6"><a href="#"><i class="fas fa-book"></i> Truyên Teen - Tuổi Học Trò</a></li>
+                <li class="cat-item col-xs-12 col-md-4 col-sm-6"><a href="#"><i class="fas fa-book"></i> Cổ Tích - Thần Thoại</a></li>
+                <li class="cat-item col-xs-12 col-md-4 col-sm-6"><a href="#"><i class="fas fa-book"></i> Triết Học</a></li>
+                <li class="cat-item col-xs-12 col-md-4 col-sm-6"><a href="#"><i class="fas fa-book"></i> Kiếm Hiệp - Tiên Hiệp</a></li>
+                <li class="cat-item col-xs-12 col-md-4 col-sm-6"><a href="#"><i class="fas fa-book"></i> Tiểu Thuyết Trung Quốc</a></li>
+                <li class="cat-item col-xs-12 col-md-4 col-sm-6"><a href="#"><i class="fas fa-book"></i> Kiến Trúc - Xây Dựng</a></li>
+                <li class="cat-item col-xs-12 col-md-4 col-sm-6"><a href="#"><i class="fas fa-book"></i> Nông - Lâm - Ngư</a></li>
+                <li class="cat-item col-xs-12 col-md-4 col-sm-6"><a href="#"><i class="fas fa-book"></i> Công Nghệ Thông Tin</a></li>
+                <li class="cat-item col-xs-12 col-md-4 col-sm-6"><a href="#"><i class="fas fa-book"></i> Tài Liệu Học Tập</a></li>
+                <li class="cat-item col-xs-12 col-md-4 col-sm-6"><a href="#"><i class="fas fa-book"></i> Ẩm thực - Nấu ăn</a></li>
+                <li class="cat-item col-xs-12 col-md-4 col-sm-6"><a href="#"><i class="fas fa-book"></i> Thư Viện Pháp Luật</a></li>
+                <li class="cat-item col-xs-12 col-md-4 col-sm-6"><a href="#"><i class="fas fa-book"></i> Truyện Tranh</a></li>
+            </ul>
+            <p class="text-center" style="padding-top: 20px;">
+                <a class="btn btn-lg btn-success btn-home" href="#"" role="button"> Tất Cả Sách</a
+            </p>
+        </div>
+        <footer class="container footer">
+            <p>© 2020 Thư Viện Sách, Bài tập lớn môn Lập trình Web.</p>
+        </footer>
     </div>
     <div class="modal fade" id="LoginModal" tabindex="-1" role="dialog" data-backdrop="static" aria-hidden="true">
         <div class="modal-dialog" role="document">
