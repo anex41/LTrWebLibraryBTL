@@ -66,7 +66,7 @@
             <div class="col-sm-12" style="height: 50px;">
                 <div class="row mx-0 my-auto h-100" onclick="changeView('disapprove')" style="cursor: pointer;">
                     <div class="sideNavTitle col-sm-10 m-auto">
-                        <a class="text-white col-sm-12 my-2">Quản lý phiểu mượn</a>
+                        <a class="text-white col-sm-12 my-2">Quản lý phiếu mượn</a>
                     </div>
                     <div class=" p-0 my-auto text-center">
                         <i class="text-white fas fa-clipboard" style="font-size: 25px;"></i>
