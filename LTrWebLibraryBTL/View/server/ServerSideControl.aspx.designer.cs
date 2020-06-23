@@ -22,5 +22,14 @@ namespace LTrWebLibraryBTL.View.server
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::LTrWebLibraryBTL.UserControl.WebUserControl1 UCQuanLyNguoiDung;
+
+        /// <summary>
+        /// Quanlysach control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::LTrWebLibraryBTL.UserControl.BookManageUserControl Quanlysach;
     }
 }

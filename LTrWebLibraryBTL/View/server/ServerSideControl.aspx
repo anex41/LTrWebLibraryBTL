@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="Quản lý" Language="C#" MasterPageFile="~/View/server/Server.Master" AutoEventWireup="true" CodeBehind="ServerSideControl.aspx.cs" Inherits="LTrWebLibraryBTL.View.server.ServerSideControl" %>
 
 <%@ Register TagPrefix="ServerSide" TagName="Quanlynguoidung" Src="~/UserControl/ReaderUserControl.ascx" %>
+<%@ Register TagPrefix="ServerSide" TagName="Quanlysach" Src="~/UserControl/BookManageUserControl.ascx" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="BTLContent" runat="server">
     <style>
@@ -86,7 +87,7 @@
                 <%--<product:add id="ProductAdd" clientidmode="static" runat="server"></product:add>--%>
             </div>
             <div hidden id="productEditDiv" class="editProductDiv container-fluid">
-                Sửa
+                <ServerSide:Quanlysach id="Quanlysach" runat="server" />
                 <%--<product:edit id="Edit" clientidmode="static" runat="server"></product:edit>--%>
             </div>
             <div hidden id="productApproveDiv" class="deactivateProductDiv container-fluid">
