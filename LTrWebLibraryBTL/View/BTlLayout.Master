@@ -7,7 +7,8 @@
 <html>
 <head runat="server">
     <meta charset="utf-8" />
-    <title><%: Page.Title %> - BTL nhóm x</title>
+    <title><%: Page.Title %> - Thư Viện Sách</title>
+    <link rel="stylesheet" href="/Content/style-1.css">
 
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
@@ -32,26 +33,43 @@
     </form>
     <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light fixed-top" style="height: 80px;">
         <div class="container-fluid">
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Trang chủ <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Không phải trang chủ</a>
-                    </li>
-                </ul>
-                <div class="text-right">
-                    <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#LoginModal">Đăng nhập</button>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="./TrangChu">Thư Viện Sách</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="./TrangChu">Trang chủ</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">Thể Loại Sách
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./GioiThieu">Giới thiệu</a>
+                        </li>
+                    </ul>
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm gì đó?" aria-label="Search">
+                        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+                    </form>
                 </div>
+            </nav>
+            <div class="text-right">
+                <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#LoginModal">Đăng nhập</button>
             </div>
         </div>
     </nav>
     <div>
         <asp:ContentPlaceHolder ID="BTLContent" runat="server">
+
         </asp:ContentPlaceHolder>
     </div>
     <div class="modal fade" id="LoginModal" tabindex="-1" role="dialog" data-backdrop="static" aria-hidden="true">
@@ -69,6 +87,9 @@
             </div>
         </div>
     </div>
+    <footer class="container footer">
+            <p>© 2020 Thư Viện Sách, Bài tập lớn môn Lập trình Web.</p>
+        </footer>
     <script type="text/javascript" src="/Scripts/umd/popper.js"></script>
     <script type="text/javascript" src="/Scripts/bootstrap.js"></script>
     <script type="text/javascript" src="/../Scripts/toastController.js"></script>

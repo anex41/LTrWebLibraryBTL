@@ -141,17 +141,6 @@ as
 		where tblLibraryUser.userId = @identity
 	END
 
-/* tạo proc lấy danh sách người dùng */
-
-create proc getLibraryUserList
-as
-	Begin
-		select tblLibraryUser.userId, tblLibraryUser.userAccount,
-			tblLibraryUser.userDisplayName, tblLibraryUser.userEmail, tblLibraryUser.userAddress,
-			tblLibraryUser.userStatus, tblLibraryUser.userRole
-		from tblLibraryUser
-	end
-
 /* tạo proc lấy thông tin người dùng qua username */
 
 create proc getLibraryUserByAccount
@@ -171,8 +160,50 @@ drop proc getLibraryUserByAccount
 
 exec getLibraryUserByAccount @account="vinhnguyen", @library = 1
 
-/* tạo proc thêm người dùng */
-/* tạo proc thêm người dùng */
-/* tạo proc thêm người dùng */
-/* tạo proc thêm người dùng */
-select * from tblLibraryUser
+
+/* tạo proc lấy danh sách người dùng */
+
+create proc getLibraryUserList
+@libraryID int
+as
+	Begin
+		select tblLibraryUser.userId, tblLibraryUser.userAccount, tblLibraryUser.userDisplayName,
+			tblLibraryUser.userStatus, tblLibraryUser.userRole
+		from tblLibraryUser, tblUserAndLibrary
+		where tblUserAndLibrary.userId = tblLibraryUser.userId and tblUserAndLibrary.libraryId = @libraryID
+	End
+
+drop proc getLibraryUserList
+
+exec getLibraryUserList @libraryID = 1
+
+/* tạo proc kích hoạt người dùng */
+
+create proc approveUser
+@userId int
+as
+	Begin
+		update tblLibraryUser
+		set tblLibraryUser.userStatus = 1
+		where tblLibraryUser.userId = @userId
+	End
+
+drop proc approveUser
+
+exec approveUser @userId = 1
+
+/* tạo proc hủy kích hoạt người dùng */
+
+create proc disapproveUser
+@userId int
+as
+	Begin
+		update tblLibraryUser
+		set tblLibraryUser.userStatus = 0
+		where tblLibraryUser.userId = @userId
+	End
+
+drop proc disapproveUser
+
+exec disapproveUser @userId = 1
+
