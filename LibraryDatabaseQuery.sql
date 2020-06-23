@@ -14,9 +14,7 @@ create table tblLibraryUser (
 	userStatus int NOT NULL,
 	userRole int NOT NULL
 );
-alter table tblLibraryUser
-ADD 
-CONSTRAINT [PK_tblLibraryUser.userId]  primary key (userId );
+
 drop table tblLibraryUser
 
 /* tạo bảng thư viện */
@@ -27,57 +25,65 @@ create table tblLibrary (
 	libraryAddress nvarchar(30) NOT NULL
 )
 
+drop table tblLibrary
+
+/* tạo bảng loại sách */
+create table tblloaisach (
+	iMaloaisach int identity(1,1) NOT NULL,
+	sTenloaisach NVARCHAR(30)  NULL
+)
 
 /* tạo bảng sách */
 create table tblSach (
-	iMasach int identity(1,1) NOT NULL PRIMARY KEY,
+	iMasach int identity(1,1) NOT NULL,
 	iMaloaisach	INT NULL,
 	sTensach NVARCHAR(50) NULL,
-	fSoluong float NULL,
+	fSoluong int NULL,
 	sChude NVARCHAR(50) NULL,
 	fGiathue float NULL
-	foreign key (iMaloaisach) references tblloaisach(iMaloaisach),
 )
-/* tạo bảng loại sách */
-create table tblloaisach (
-	iMaloaisach int identity(1,1) NOT NULL PRIMARY KEY,
-	sTenloaisach NVARCHAR(30)  NULL
-)
+
+drop table tblSach
+
 /* tạo bảng phiếu mượn */
 create table tblPhieumuon (
-	iMaPhieu int identity(1,1) NOT NULL PRIMARY KEY,
+	iMaPhieu int identity(1,1) NOT NULL,
 	userId INT NULL,
 	Ngaythue DATE NULL,
 	Ngaytra DATE NULL,
-	Giahan DATE NULL,
-	foreign key (userId) references tblLibraryUser(userId),
+	Giahan DATE NULL
 )
+
+drop table tblPhieumuon
+
 /* tạo bảng chi tiết phiếu mượn */
 create table tblChitietphieumuon(
-	iMaphieu int identity(1,1) NOT NULL PRIMARY KEY,
-	iMasach INT NULL, 
-	fSoluongthue FLOAT NULL,
-	fGiathue FLOAT NULL,
-	foreign key (iMasach) references tblSach(iMasach),
+	iMaphieu int identity(1,1) NOT NULL,
+	iMasach INT NOT NULL, 
+	fSoluongthue int NOT NULL,
+	fGiathue FLOAT NOT NULL
 )
+
+drop table tblChitietphieumuon
+
 /* tạo proc thêm loại sách */
 create proc Addloaisach @tenloaisach NVARCHAR(30)
 as
-insert into tblloaisach(sTenloaisach)
-values (@tenloaisach)
+	insert into tblloaisach(sTenloaisach)
+	values (@tenloaisach)
 
 /* tạo proc thêm sách */
 create proc Addsach	@maloaisach	INT, @tensach NVARCHAR(50), @soluong float, @chude NVARCHAR(50), @giathue float 
 as
-insert into tblSach(iMaloaisach,sTensach,fSoluong,sChude,fGiathue)
-values (@maloaisach,@tensach,@soluong,@chude,@giathue)
+	insert into tblSach(iMaloaisach,sTensach,fSoluong,sChude,fGiathue)
+	values (@maloaisach,@tensach,@soluong,@chude,@giathue)
 
 /* tạo proc thêm số lượng sách */
 create proc Addsoluongsach	@masach	INT, @soluong float
-as
-update tblSach
-set fSoluong = fSoluong + @soluong
-where iMasach=@masach
+	as
+	update tblSach
+	set fSoluong = fSoluong + @soluong
+	where iMasach=@masach
 
 /* tạo phiếu mượn và chi tiết phiếu mượn 
 create proc Addphieumuon @userid INT, @ngaythue DATE, @ngaytra DATE, @masach INT, @soluongthue FLOAT, @giathue DATE
@@ -89,17 +95,26 @@ insert into tblChitietphieumuon(iMasach,fSoluongthue,fGiathue)
 /* tạo proc lấy ra các sách cùng thể loại*/
 create proc returnsachcungloai @maloai INT
 as
-select tblSach.sTensach,sChude,tblloaisach.sTenloaisach
-from tblSach,tblloaisach
-where  tblSach.iMaloaisach=@maloai and tblloaisach.iMaloaisach = tblSach.iMaloaisach
+	select tblSach.sTensach,sChude,tblloaisach.sTenloaisach
+	from tblSach,tblloaisach
+	where  tblSach.iMaloaisach=@maloai and tblloaisach.iMaloaisach = tblSach.iMaloaisach
 
-/**/
-drop table tblLibrary
+
 
 /* tạo bảng liên kết giữa người dùng và thư viện */
 
 create table tblUserAndLibrary (
 	userId int NOT NULL,
+	libraryId int NOT NULL,
+	statusFlag bit NOT NULL
+)
+
+drop table tblUserAndLibrary
+
+/* tạo bảng liên kết giữa sách và thư viện */
+
+create table tblBookAndLibrary (
+	iMasach int NOT NULL,
 	libraryId int NOT NULL,
 	statusFlag bit NOT NULL
 )
