@@ -61,16 +61,9 @@
                     </div>
                     <div class="mb-3">
                         <label for="phonenumber">Số điện thoại</label>
-                        <input type="number" class="form-control" id="phonenumber">
+                        <input type="tel" class="form-control" id="phonenumber">
                         <div class="invalid-feedback">
                             Vui lòng nhập số điện thoại.
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="address">Địa chỉ</label>
-                        <input type="text" class="form-control" id="address" placeholder="96 Định Công" required="">
-                        <div class="invalid-feedback">
-                            Vui lòng nhập vào địa chỉ của bạn.
                         </div>
                     </div>
                     <hr class="mb-4">
