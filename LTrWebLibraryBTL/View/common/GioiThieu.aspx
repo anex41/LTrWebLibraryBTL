@@ -4,9 +4,10 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 wow slideInUp" style="visibility: visible; animation-name: slideInUp;">
-                <h1 style="text-align: center; font-weight: 600; margin-top: 30px;">Giới Thiệu Về Thư Viện Sách</h1>
+                <h1 style="text-align: center; font-weight: 600; margin-top: 30px; border-bottom: 1px solid #eee;
+    padding-bottom: 20px;">Giới Thiệu Về Thư Viện Sách</h1>
             </div>
-            <div class="aboutcontainer">
+            <div class="aboutcontainer" style="padding-top: 20px;">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-5 wow rotateInDownLeft" style="visibility: visible; animation-name: rotateInDownLeft;">

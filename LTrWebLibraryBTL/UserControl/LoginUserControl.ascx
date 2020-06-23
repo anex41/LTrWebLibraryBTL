@@ -27,8 +27,11 @@
             </select>
         </div>
     </div>
-    <div class="col-sm-12 px-0 mx-0 mb-3 text-right">
+    <div class="col-sm-12 px-0 mx-0 mb-3 text-center">
         <button type="button" class="btn btn-primary" id="btnLogin" onclick="dangNhap()">Đăng nhập</button>
+        <div class="form-group">
+            <p class="text-center" style="padding-top: 20px; margin-bottom: 0!important">Chưa có tài khoản ư? <a href="/View/client/UserSignup" id="signup">Đăng ký ngay nào!</a></p>
+        </div>
     </div>
 </div>
 <script>

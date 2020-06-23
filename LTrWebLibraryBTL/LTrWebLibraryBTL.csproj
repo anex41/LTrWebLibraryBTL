@@ -173,7 +173,7 @@
     <Content Include="Services\UserServices.asmx" />
     <Content Include="UserControl\LoginUserControl.ascx" />
     <Content Include="UserControl\ReaderUserControl.ascx" />
-    <Content Include="View\client\UserInfoPage.aspx" />
+    <Content Include="View\client\UserSignup.aspx" />
     <Content Include="View\common\GioiThieu.aspx" />
     <Content Include="View\common\TrangChu.aspx" />
     <Content Include="View\server\ServerSideControl.aspx" />
@@ -365,12 +365,12 @@
     <Compile Include="View\BTlLayout.Master.designer.cs">
       <DependentUpon>BTlLayout.Master</DependentUpon>
     </Compile>
-    <Compile Include="View\client\UserInfoPage.aspx.cs">
-      <DependentUpon>UserInfoPage.aspx</DependentUpon>
+    <Compile Include="View\client\UserSignup.aspx.cs">
+      <DependentUpon>UserSignup.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="View\client\UserInfoPage.aspx.designer.cs">
-      <DependentUpon>UserInfoPage.aspx</DependentUpon>
+    <Compile Include="View\client\UserSignup.aspx.designer.cs">
+      <DependentUpon>UserSignup.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\common\GioiThieu.aspx.cs">
       <DependentUpon>GioiThieu.aspx</DependentUpon>
