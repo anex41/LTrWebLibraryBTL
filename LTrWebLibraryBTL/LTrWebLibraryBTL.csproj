@@ -173,6 +173,8 @@
     <Content Include="Services\UserServices.asmx" />
     <Content Include="UserControl\LoginUserControl.ascx" />
     <Content Include="UserControl\ReaderUserControl.ascx" />
+    <Content Include="View\client\UserInfoPage.aspx" />
+    <Content Include="View\common\GioiThieu.aspx" />
     <Content Include="View\common\TrangChu.aspx" />
     <Content Include="View\server\ServerSideControl.aspx" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
@@ -363,6 +365,20 @@
     <Compile Include="View\BTlLayout.Master.designer.cs">
       <DependentUpon>BTlLayout.Master</DependentUpon>
     </Compile>
+    <Compile Include="View\client\UserInfoPage.aspx.cs">
+      <DependentUpon>UserInfoPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\client\UserInfoPage.aspx.designer.cs">
+      <DependentUpon>UserInfoPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\common\GioiThieu.aspx.cs">
+      <DependentUpon>GioiThieu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\common\GioiThieu.aspx.designer.cs">
+      <DependentUpon>GioiThieu.aspx</DependentUpon>
+    </Compile>
     <Compile Include="View\common\TrangChu.aspx.cs">
       <DependentUpon>TrangChu.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -387,7 +403,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="View\client\" />
+    <Folder Include="Content\img\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
