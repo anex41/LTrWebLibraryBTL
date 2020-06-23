@@ -7,22 +7,22 @@
         .ServerSideNav {
             background-color: #343a40;
             width: 22vw;
-            transition: all 1s;
+            transition: all 0.5s;
         }
 
         .sideNavTog {
             width: 5vw !important;
-            transition: all 1s;
+            transition: all 0.5s;
         }
 
         .ServerContent {
             margin-left: 22vw;
-            transition: all 1s;
+            transition: all 0.5s;
         }
 
         .ServerContentTog {
             margin-left: 5vw;
-            transition: all 1s;
+            transition: all 0.5s;
         }
 
         .toogleButtonStyle {
@@ -31,12 +31,12 @@
             border-top-right-radius: 15px;
             border-bottom-right-radius: 15px;
             top: 80px;
-            transition: all 1s;
+            transition: all 0.5s;
         }
 
         .toogleButtonTog {
             left: 4.9vw;
-            transition: all 1s;
+            transition: all 0.5s;
         }
     </style>
     <div id="ServerSideNav" class="ServerSideNav position-fixed border-right border-secondary" style="height: calc(100% - 80px);">
@@ -102,9 +102,6 @@
     <script>
         var sideNavFlag = true;
         var fontAwesome = document.getElementById("faId");
-        $(document).ready(function () {
-
-        });
 
         function toggleSideNav() {
             sideNavFlag == true ? closeSideNav() : openSideNave();

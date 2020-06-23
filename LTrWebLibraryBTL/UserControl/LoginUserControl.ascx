@@ -56,7 +56,6 @@
                     case 1:
                         showSucceedToast("Thành công", "Đăng nhập thành công");
                         break;
-
                 }
             });
         } else {
