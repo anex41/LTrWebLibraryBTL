@@ -2,6 +2,7 @@
 
 <%@ Register TagPrefix="ServerSide" TagName="Quanlynguoidung" Src="~/UserControl/ReaderUserControl.ascx" %>
 <%@ Register TagPrefix="ServerSide" TagName="Quanlysach" Src="~/UserControl/BookManageUserControl.ascx" %>
+<%@ Register TagPrefix="ServerSide" TagName="Quanlyphieumuon" Src="~/UserControl/BorrowTicketManageUserControl.ascx" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="BTLContent" runat="server">
     <style>
@@ -65,7 +66,7 @@
             </div>
             <hr class="w-100 bg-white my-1" />
             <div class="col-sm-12" style="height: 50px;">
-                <div class="row mx-0 my-auto h-100" onclick="changeView('disapprove')" style="cursor: pointer;">
+                <div class="row mx-0 my-auto h-100" onclick="changeView('approve')" style="cursor: pointer;">
                     <div class="sideNavTitle col-sm-10 m-auto">
                         <a class="text-white col-sm-12 my-2">Quản lý phiếu mượn</a>
                     </div>
@@ -91,12 +92,8 @@
                 <%--<product:edit id="Edit" clientidmode="static" runat="server"></product:edit>--%>
             </div>
             <div hidden id="productApproveDiv" class="deactivateProductDiv container-fluid">
-                Kích hoạt
+                <ServerSide:Quanlyphieumuon id="Quanlyphieumuon" runat="server" />
                 <%--<product:approve id="Approve" clientidmode="static" runat="server"></product:approve>--%>
-            </div>
-            <div hidden id="productDisapproveDiv" class="activateProductDiv container-fluid">
-                Hủy kích hoạt
-                <%--<product:disapprove id="Disapprove" clientidmode="static" runat="server"></product:disapprove>--%>
             </div>
         </div>
     </div>
