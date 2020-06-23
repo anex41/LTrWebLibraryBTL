@@ -172,6 +172,7 @@
     <Content Include="Services\LoginServices.asmx" />
     <Content Include="Services\UserServices.asmx" />
     <Content Include="UserControl\BookManageUserControl.ascx" />
+    <Content Include="UserControl\BorrowTicketManageUserControl.ascx" />
     <Content Include="UserControl\LoginUserControl.ascx" />
     <Content Include="UserControl\ReaderUserControl.ascx" />
     <Content Include="View\client\UserSignup.aspx" />
@@ -344,6 +345,13 @@
     </Compile>
     <Compile Include="UserControl\BookManageUserControl.ascx.designer.cs">
       <DependentUpon>BookManageUserControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\BorrowTicketManageUserControl.ascx.cs">
+      <DependentUpon>BorrowTicketManageUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControl\BorrowTicketManageUserControl.ascx.designer.cs">
+      <DependentUpon>BorrowTicketManageUserControl.ascx</DependentUpon>
     </Compile>
     <Compile Include="UserControl\LoginUserControl.ascx.cs">
       <DependentUpon>LoginUserControl.ascx</DependentUpon>

@@ -1,4 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ReaderUserControl.ascx.cs" Inherits="LTrWebLibraryBTL.UserControl.WebUserControl1" %>
+
 <div class="row mx-0">
     <div class="text-primary text-center col-sm-12 position-relative">
         <h1>Quản lý người dùng</h1>
