@@ -26,5 +26,7 @@ namespace LTrWebLibraryBTL.Model
         public int UserStatus { get; set; }
         public int UserRole { get; set; }
         public int LibraryId { get; set; }
+
+        public UserModel() { }
     }
 }
