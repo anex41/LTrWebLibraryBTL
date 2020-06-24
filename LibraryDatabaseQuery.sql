@@ -66,6 +66,9 @@ create table tblChitietphieumuon(
 
 drop table tblChitietphieumuon
 
+alter table tblChitietphieumuon
+add
+CONSTRAINT FK_iMaSach  FOREIGN KEY(iMaSach) REFERENCES tblSach(iMaSach);
 /* tạo proc thêm loại sách */
 create proc Addloaisach @tenloaisach NVARCHAR(30)
 as
@@ -252,3 +255,8 @@ EXEC @return_status = signUpProc @account="tuanthanh", @password="95251db4046d86
 			@name ="Đinh Tún Thạch", @email = "thanh@xmail.com", @address="Hà Nội", @library = 1;  
 SELECT 'Return Status' = @return_status;  
 GO
+/*
+taipham-pass tai3110
+thanhdinh-pass thanh123
+anex-pass trung123
+*/
