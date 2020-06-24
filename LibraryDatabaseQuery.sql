@@ -222,3 +222,33 @@ drop proc disapproveUser
 
 exec disapproveUser @userId = 1
 
+/* Tạo proc đăng ký người dùng */
+
+create proc signUpProc
+@account varchar(30),
+@password varchar(256),
+@name nvarchar(60),
+@email varchar(60),
+@address nvarchar(60),
+@library int
+as
+	Begin
+		if Exists( select top 1* from tblLibraryUser where tblLibraryUser.userAccount = @account)
+			return -1
+		else
+			begin
+				insert into tblLibraryUser
+				values (@account,@password,@name,@email,@address,-1,0);
+				insert into tblUserAndLibrary
+				values(SCOPE_IDENTITY(), @library, 1);
+				return 1;
+			end
+	End
+
+drop proc signUpProc
+
+DECLARE @return_status int;  
+EXEC @return_status = signUpProc @account="tuanthanh", @password="95251db4046d8681745142ebf5abdc50e3963604c0e89d8cad2451826d0f86e7",
+			@name ="Đinh Tún Thạch", @email = "thanh@xmail.com", @address="Hà Nội", @library = 1;  
+SELECT 'Return Status' = @return_status;  
+GO

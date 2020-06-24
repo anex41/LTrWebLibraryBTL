@@ -6,6 +6,8 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.Services;
 
@@ -81,6 +83,47 @@ namespace LTrWebLibraryBTL.Services
             cmd.ExecuteNonQuery();
             con.Close();
             return;
+        }
+
+        [WebMethod]
+        public int SignUpUser(string account, string password, string name, string email, string address, int libId)
+        {
+            int result = 0;
+            SqlCommand cmd = new SqlCommand("signUpProc", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlParameter Account = cmd.Parameters.Add("account", SqlDbType.VarChar, 50);
+            SqlParameter Password = cmd.Parameters.Add("password", SqlDbType.VarChar, 256);
+            SqlParameter Name = cmd.Parameters.Add("name", SqlDbType.NVarChar, 60);
+            SqlParameter Email = cmd.Parameters.Add("email", SqlDbType.VarChar, 60);
+            SqlParameter Address = cmd.Parameters.Add("address", SqlDbType.NVarChar, 60);
+            SqlParameter LibraryID = cmd.Parameters.Add("library", SqlDbType.Int);
+            Account.Value = account;
+            Password.Value = HashString(password).ToLower();
+            Name.Value = name;
+            Email.Value = email;
+            Address.Value = address;
+            LibraryID.Value = libId;
+            var returnParameter = cmd.Parameters.Add("@ReturnVal", SqlDbType.Int);
+            returnParameter.Direction = ParameterDirection.ReturnValue;
+            con.Open();
+            cmd.ExecuteNonQuery();
+            result = int.Parse(returnParameter.Value.ToString());
+            con.Close();
+            return result;
+        }
+
+        private string HashString(string input)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (byte b in GetHash(input))
+                sb.Append(b.ToString("X2"));
+            return sb.ToString();
+        }
+
+        private byte[] GetHash(string inputString)
+        {
+            using (HashAlgorithm algorithm = SHA256.Create())
+                return algorithm.ComputeHash(Encoding.UTF8.GetBytes(inputString));
         }
     }
 }
