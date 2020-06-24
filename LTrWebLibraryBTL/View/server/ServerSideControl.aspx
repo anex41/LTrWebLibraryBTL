@@ -44,7 +44,7 @@
     <div id="ServerSideNav" class="ServerSideNav position-fixed border-right border-secondary" style="height: calc(100% - 80px);">
         <div class="row m-0">
             <div class="col-sm-12" style="height: 50px;">
-                <div class="row mx-0 my-auto h-100" onclick="changeView('add')" style="cursor: pointer;">
+                <div class="row mx-0 my-auto h-100" onclick="changeView('QLND')" style="cursor: pointer;">
                     <div class="sideNavTitle col-sm-10 m-auto">
                         <a class="text-white col-sm-12 my-2">Quản lý người dùng</a>
                     </div>
@@ -55,7 +55,7 @@
             </div>
             <hr class="w-100 bg-white my-1" />
             <div class="col-sm-12" style="height: 50px;">
-                <div class="row mx-0 my-auto h-100" onclick="changeView('edit')" style="cursor: pointer;">
+                <div class="row mx-0 my-auto h-100" onclick="changeView('QLS')" style="cursor: pointer;">
                     <div class="sideNavTitle col-sm-10 m-auto">
                         <a class="text-white col-sm-12 my-2">Quản lý sách</a>
                     </div>
@@ -66,7 +66,7 @@
             </div>
             <hr class="w-100 bg-white my-1" />
             <div class="col-sm-12" style="height: 50px;">
-                <div class="row mx-0 my-auto h-100" onclick="changeView('approve')" style="cursor: pointer;">
+                <div class="row mx-0 my-auto h-100" onclick="changeView('QLPM')" style="cursor: pointer;">
                     <div class="sideNavTitle col-sm-10 m-auto">
                         <a class="text-white col-sm-12 my-2">Quản lý phiếu mượn</a>
                     </div>
@@ -83,17 +83,14 @@
             <i id="faId" class="text-white fas fa-caret-left"></i>
         </div>
         <div class="row mx-0">
-            <div id="productAddDiv" class="addProductDiv container-fluid">
-                <ServerSide:Quanlynguoidung id="UCQuanLyNguoiDung" runat="server" />
-                <%--<product:add id="ProductAdd" clientidmode="static" runat="server"></product:add>--%>
+            <div id="QLND" class="container-fluid">
+                <ServerSide:Quanlynguoidung ID="UCQuanLyNguoiDung" runat="server" />
             </div>
-            <div hidden id="productEditDiv" class="editProductDiv container-fluid">
+            <div hidden id="QLS" class="container-fluid">
                 <ServerSide:Quanlysach id="Quanlysach" runat="server" />
-                <%--<product:edit id="Edit" clientidmode="static" runat="server"></product:edit>--%>
             </div>
-            <div hidden id="productApproveDiv" class="deactivateProductDiv container-fluid">
+            <div hidden id="QLPM" class="container-fluid">
                 <ServerSide:Quanlyphieumuon id="Quanlyphieumuon" runat="server" />
-                <%--<product:approve id="Approve" clientidmode="static" runat="server"></product:approve>--%>
             </div>
         </div>
     </div>
@@ -131,29 +128,20 @@
 
         function changeView(value) {
             switch (value) {
-                case "add":
-                    $("#productAddDiv").removeAttr("hidden");
-                    $("#productEditDiv").prop("hidden", true);
-                    $("#productApproveDiv").prop("hidden", true);
-                    $("#productDisapproveDiv").prop("hidden", true);
+                case "QLND":
+                    $("#QLND").removeAttr("hidden");
+                    $("#QLS").prop("hidden", true);
+                    $("#QLPM").prop("hidden", true);
                     break;
-                case "edit":
-                    $("#productEditDiv").removeAttr("hidden");
-                    $("#productApproveDiv").prop("hidden", true);
-                    $("#productAddDiv").prop("hidden", true);
-                    $("#productDisapproveDiv").prop("hidden", true);
+                case "QLS":
+                    $("#QLS").removeAttr("hidden");
+                    $("#QLND").prop("hidden", true);
+                    $("#QLPM").prop("hidden", true);
                     break;
-                case "approve":
-                    $("#productApproveDiv").removeAttr("hidden");
-                    $("#productDisapproveDiv").prop("hidden", true);
-                    $("#productEditDiv").prop("hidden", true);
-                    $("#productAddDiv").prop("hidden", true);
-                    break;
-                case "disapprove":
-                    $("#productDisapproveDiv").removeAttr("hidden");
-                    $("#productEditDiv").prop("hidden", true);
-                    $("#productAddDiv").prop("hidden", true);
-                    $("#productApproveDiv").prop("hidden", true);
+                case "QLPM":
+                    $("#QLPM").removeAttr("hidden");
+                    $("#QLS").prop("hidden", true);
+                    $("#QLND").prop("hidden", true);
                     break;
                 default:
                     showInfoToast("Thông báo!", "Đường dẫn không tồn tại");
