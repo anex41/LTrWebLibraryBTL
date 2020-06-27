@@ -58,6 +58,7 @@
                         break;
                     case 1:
                         showSucceedToast("Thành công", "Đăng nhập thành công");
+                        window.location.reload();
                         break;
                 }
             });
@@ -96,77 +97,4 @@
         }
         return result;
     };
-
-    //$(document).ready(function () {
-    //    $("#btnLogin").on("click", function () {
-    //        if (!validateRequired()) {
-    //            $('.toastError').toast('show');
-    //        } else {
-    //            if (validateLength()) {
-    //                let data = { "username": $("#txtName").val().trim(), "password": $("#txtPassword").val() };
-    //                $.ajax({
-    //                    type: "POST",
-    //                    url: window.location.origin + "/Services/Login.asmx/UserLogin",
-    //                    data: JSON.stringify(data),
-    //                    contentType: "application/json; charset=utf-8",
-    //                    dataType: "json",
-    //                    success: function (response) {
-    //                        if (response.d == null) {
-    //                            $('#exampleModal').modal('hide');
-    //                            showErrorToast("Lỗi!", "Đã có lỗi xảy ra trong quá trình đăng nhập");
-    //                        }
-    //                        else {
-    //                            createSession(data, (response.d).toString());
-    //                        }
-    //                    }
-    //                });
-    //            } else {
-    //                showErrorToast("Lỗi!", "Đã có lỗi xảy ra trong quá trình đăng nhập");
-    //            }
-    //        }
-    //    });
-    //});
-
-    //function validateLength() {
-    //    let result = true;
-    //    let name = $("#txtName").val().trim();
-    //    let pass = $("#txtPassword").val().trim();
-    //    if (name.length < 4 || name.length > 12) {
-    //        $("#txtNameLength").show();
-    //        result = false;
-    //    } else {
-    //        $("#txtNameLength").hide();
-    //        result = true;
-    //    }
-    //    if (result) {
-    //        if (pass.length < 6 || pass.length > 12) {
-    //            $("#txtPasswordLength").show();
-    //            result = false;
-    //        } else {
-    //            $("#txtPasswordLength").hide();
-    //            result = true;
-    //        }
-    //    }
-    //    return result;
-    //}
-
-    //function redirectPage(str) {
-    //    if (str == "1") {
-    //        window.location.replace(window.location.origin + "/View/BTL/view/admin/adminControllerView");
-    //    } else if (str == "0") {
-    //        window.location.replace(window.location.origin + "/View/BTL/view/client/clientControllerView");
-    //    } else {
-    //        showErrorToast("Lỗi!", "Đã có lỗi xảy ra trong quá trình đăng nhập");
-    //    }
-    //}
-
-    //function createSession(obj, str) {
-    //    $.ajax({
-    //        type: "POST",
-    //        url: window.location.origin + "/Services/Login.asmx/CreateSession",
-    //        data: JSON.stringify(obj),
-    //        contentType: "application/json; charset=utf-8",
-    //        dataType: "json"
-    //    }).then(redirectPage(str));
-    //}
 </script>

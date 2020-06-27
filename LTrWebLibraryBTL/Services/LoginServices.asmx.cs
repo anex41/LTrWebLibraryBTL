@@ -55,6 +55,7 @@ namespace LTrWebLibraryBTL.Services
             if (string.Compare(hashedPassword, tblpass) == 0)
             {
                 Session["currentAccount"] = account;
+                Session["currentRole"] = role;
                 Session["currentLibrary"] = library;
                 return 1;
             }

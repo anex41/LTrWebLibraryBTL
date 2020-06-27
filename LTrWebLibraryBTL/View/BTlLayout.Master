@@ -62,14 +62,25 @@
                     </form>
                 </div>
             </nav>
-            <div class="text-right">
+            <div runat="server" id="divDangNhap" clientidmode="Static" class="text-right">
                 <button class="btn btn-outline-primary" type="button" data-toggle="modal" data-target="#LoginModal">Đăng nhập</button>
+            </div>
+            <div runat="server" id="divDangXuat" clientidmode="Static" class="btn-group">
+                <button type="button" class="btn btn-info"><i class="fas fa-user-tie"></i></button>
+                <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a id="adminRoleA" runat="server" clientidmode="Static" class="dropdown-item" onclick="redirectA('admin')">Quản Lý</a>
+                    <a id="clientRoleA" runat="server" clientidmode="Static" class="dropdown-item" onclick="redirectA('passw')">Đổi mật khẩu</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" onclick="signOut()">Đăng xuất</a>
+                </div>
             </div>
         </div>
     </nav>
     <div>
         <asp:ContentPlaceHolder ID="BTLContent" runat="server">
-
         </asp:ContentPlaceHolder>
     </div>
     <div class="modal fade" id="LoginModal" tabindex="-1" role="dialog" data-backdrop="static" aria-hidden="true">
@@ -88,13 +99,19 @@
         </div>
     </div>
     <footer class="container footer">
-            <p>© 2020 Thư Viện Sách, Bài tập lớn môn Lập trình Web.</p>
-        </footer>
+        <p>© 2020 Thư Viện Sách, Bài tập lớn môn Lập trình Web.</p>
+    </footer>
     <script type="text/javascript" src="/Scripts/umd/popper.js"></script>
     <script type="text/javascript" src="/Scripts/bootstrap.js"></script>
     <script type="text/javascript" src="/../Scripts/toastController.js"></script>
     <script>
         appendParent();
+        function redirectA(value) {
+            console.log(value);
+        };
+        function signOut() {
+            console.log("Đây là nút đăng xuất");
+        };
     </script>
 </body>
 </html>

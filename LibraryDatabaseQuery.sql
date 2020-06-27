@@ -159,6 +159,8 @@ as
 		where tblLibraryUser.userId = @identity
 	END
 
+drop proc getLibraryUserInfor
+
 /* tạo proc lấy thông tin người dùng qua username */
 
 create proc getLibraryUserByAccount
