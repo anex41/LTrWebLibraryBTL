@@ -11,7 +11,26 @@ namespace LTrWebLibraryBTL.View
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["currentAccount"] != null)
+            {
+                divDangNhap.Visible = false;
+                divDangXuat.Visible = true;
+                string role = Session["currentRole"].ToString();
+                if (int.Parse(role) == 1)
+                {
+                    adminRoleA.Visible = true;
+                    clientRoleA.Visible = false;
+                }
+                else
+                {
+                    adminRoleA.Visible = false;
+                    clientRoleA.Visible = true;
+                }
+            } else
+            {
+                divDangNhap.Visible = true;
+                divDangXuat.Visible = false;
+            }
         }
     }
 }
