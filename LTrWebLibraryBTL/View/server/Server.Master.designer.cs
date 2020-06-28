@@ -15,6 +15,24 @@ namespace LTrWebLibraryBTL.View.server
     {
 
         /// <summary>
+        /// divDangNhap control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divDangNhap;
+
+        /// <summary>
+        /// divDangXuat control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divDangXuat;
+
+        /// <summary>
         /// BTLContent control.
         /// </summary>
         /// <remarks>
