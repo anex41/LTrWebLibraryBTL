@@ -64,6 +64,15 @@ namespace LTrWebLibraryBTL.Services
                 return -2;
             }
         }
+
+        [WebMethod(enableSession: true)]
+        public void UserLogout()
+        {
+            Session["currentAccount"] = null;
+            Session["currentRole"] = null;
+            Session["currentLibrary"] = null;
+        }
+
         private string HashString(string input)
         {
             StringBuilder sb = new StringBuilder();

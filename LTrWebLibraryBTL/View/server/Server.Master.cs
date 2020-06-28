@@ -11,7 +11,16 @@ namespace LTrWebLibraryBTL.View.server
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["currentAccount"] != null)
+            {
+                divDangNhap.Visible = false;
+                divDangXuat.Visible = true;
+            }
+            else
+            {
+                divDangNhap.Visible = true;
+                divDangXuat.Visible = false;
+            }
         }
     }
 }

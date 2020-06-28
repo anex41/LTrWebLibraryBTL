@@ -70,7 +70,7 @@
                 <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="sr-only">Toggle Dropdown</span>
                 </button>
-                <div class="dropdown-menu dropdown-menu-right">
+                <div class="dropdown-menu dropdown-menu-right" style="cursor:pointer;">
                     <a id="adminRoleA" runat="server" clientidmode="Static" class="dropdown-item" onclick="redirectA('admin')">Quản Lý</a>
                     <a id="clientRoleA" runat="server" clientidmode="Static" class="dropdown-item" onclick="redirectA('passw')">Đổi mật khẩu</a>
                     <div class="dropdown-divider"></div>
@@ -107,10 +107,24 @@
     <script>
         appendParent();
         function redirectA(value) {
-            console.log(value);
+            switch (value) {
+                case "admin":
+                    window.location = location.origin + "/View/server/ServerSideControl";
+                    break;
+                case "passw":
+                    //window.location = location.origin + "/View/server/ServerSideControl";
+                    break;
+            }
         };
         function signOut() {
-            console.log("Đây là nút đăng xuất");
+            $.ajax({
+                type: "POST",
+                url: window.location.origin + "/Services/LoginServices.asmx/UserLogout",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json"
+            }).then(res => {
+                window.location.reload();
+            });
         };
     </script>
 </body>
