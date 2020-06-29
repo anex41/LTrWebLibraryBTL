@@ -72,6 +72,27 @@ namespace LTrWebLibraryBTL.Services
             Session["currentRole"] = null;
             Session["currentLibrary"] = null;
         }
+        
+        [WebMethod(enableSession: true)]
+        public int ChangeUserPassword(string password, string oldpass)
+        {
+            string curAccount = Session["currentAccount"].ToString();
+            SqlCommand cmd = new SqlCommand("changeUserPassword", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlParameter Account = cmd.Parameters.Add("account", SqlDbType.VarChar, 50);
+            SqlParameter Password = cmd.Parameters.Add("password", SqlDbType.VarChar, 256);
+            SqlParameter oldPassword = cmd.Parameters.Add("oldpassword", SqlDbType.VarChar, 256);
+            Account.Value = curAccount;
+            Password.Value = HashString(password).ToLower();
+            oldPassword.Value = HashString(oldpass).ToLower();
+            var returnParameter = cmd.Parameters.Add("@ReturnVal", SqlDbType.Int);
+            returnParameter.Direction = ParameterDirection.ReturnValue;
+            con.Open();
+            cmd.ExecuteNonQuery();
+            int result = int.Parse(returnParameter.Value.ToString());
+            con.Close();
+            return result;
+        }
 
         private string HashString(string input)
         {

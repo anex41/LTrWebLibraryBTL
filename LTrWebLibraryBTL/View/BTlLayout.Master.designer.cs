@@ -67,5 +67,14 @@ namespace LTrWebLibraryBTL.View
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::LTrWebLibraryBTL.UserControl.LoginUserControl UserControlDangNhap;
+
+        /// <summary>
+        /// DivDoiMatKhau control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::LTrWebLibraryBTL.UserControl.ChangePasswordUserControl DivDoiMatKhau;
     }
 }

@@ -249,3 +249,37 @@ taipham-pass tai3110
 thanhdinh-pass thanh123
 anex-pass trung123
 */
+
+/* tạo proc đổi mật khẩu */
+create proc changeUserPassword
+@account varchar(30),
+@password varchar(256),
+@oldpassword varchar(256)
+as
+	begin
+		if (select tblLibraryUser.userPassword 
+			from tblLibraryUser 
+			where tblLibraryUser.userAccount = @account) = @oldpassword
+			begin
+				if (select tblLibraryUser.userPassword 
+					from tblLibraryUser 
+					where tblLibraryUser.userAccount = @account) = @password
+						return -1;
+				else
+				begin
+					update tblLibraryUser
+					set tblLibraryUser.userPassword = @password
+					where tblLibraryUser.userAccount = @account
+					return 1;
+				end
+			end
+		else
+			return 0;
+	end
+
+drop proc changeUserPassword
+
+DECLARE @return_status int;  
+EXEC @return_status = changeUserPassword @account = 'anex', @password = '69596fe31f8b339800ca34029a2dc3aa14710b616b043e896e091db62203edf4'
+	, @oldpassword = '05ad5a1bf7ce09dde3fd4f3cde766206321ae61f0fd596f5dfb028d5e461a162';  
+SELECT 'Return Status' = @return_status; 
