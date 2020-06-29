@@ -18,48 +18,34 @@
             <div class="row">
                 <div class="col-md-12 order-md-1">
                     <form class="needs-validation" novalidate="">
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label>Tên loại sách</label>
-                                <input type="text" class="form-control" id="loaisach" placeholder="Sách, báo, tạp chí..." value="" required="">
-                                <div class="invalid-feedback">
-                                    Valid loại sách is required.
-                                </div>
-                            </div>
+                        <div class="row">                          
                             <div class="col-md-6 mb-3">
                                 <label>Tên sách</label>
                                 <input type="text" class="form-control" id="tensach" placeholder="Hóa học 12" value="" required="">
-                                <div class="invalid-feedback">
-                                    Valid tên sách is required.
+                                <div id="invalid-bookName" style="color: red;">
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label>Chủ đề</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control" id="chude" placeholder="Khoa học" required="">
-                                <div class="invalid-feedback" style="width: 100%;">
-                                    Chủ đề is required.
+                            <div class="col-md-6 mb-3">
+                                <label>Tên tác giả</label>
+                                <input type="text" class="form-control" id="tacgia" value="" required="">
+                                <div id="invalid-author" style="color: red;">
                                 </div>
                             </div>
-                        </div>
-                        <div class="mb-3">
-                            <label>Số lượng</label>
-                            <input type="number" class="form-control" id="soluong">
-                            <div class="invalid-feedback">
-                                Vui lòng nhập số lượng.
+                            <div class="col-md-6 mb-3">
+                                <label>Thể loại</label>
+                                <input type="text" class="form-control" id="theloai" value="" required="" placeholder="Trinh thám, Tiểu thuyết....">
+                                <div id="invalid-type" style="color: red;">
+                                </div>
                             </div>
+                            <div class="col-md-6 mb-3">
+                            <label>Thư viện</label>
+                            <select class="form-control" id="libID">
+                                <option selected="" value="1">Thư viện Hà Nội</option>
+                            </select>
                         </div>
-                        <div class="mb-3">
-                            <label>Giá mượn</label>
-                            <input type="number" class="form-control" id="giamuon" required="">
-                            <div class="invalid-feedback">
-                                Vui lòng nhập vào giá mượn.
-                            </div>
                         </div>
                         <hr class="mb-4">
-                        <button class="btn btn-primary btn-lg btn-block" type="submit" style="width: 10% !important; margin: auto;">
+                        <button class="btn btn-primary btn-lg btn-block" type="button" style="width: 10% !important; margin: auto;" onclick="kiemTra()">
                             Thêm</button>
                     </form>
                 </div>
@@ -84,3 +70,58 @@
         </div>
     </div>
 </div>
+
+<script>
+    function kiemTra() {
+        // kiểm tra các thứ nếu đúng hết thì thêm sách
+        let book = document.getElementById("tensach").value.trim();
+        let author = document.getElementById("tacgia").value.trim();
+        let type = document.getElementById("theloai").value.trim();
+
+        if (book == "") {
+            document.getElementById("invalid-bookName").innerHTML = "Vui lòng nhập tên sách.";
+            document.getElementById("tensach").focus();
+        } else if (author == "") {
+            document.getElementById("invalid-author").innerHTML = "Vui lòng nhập tên tác giả.";
+            document.getElementById("tacgia").focus();
+        }
+        else if (type == "") {
+            document.getElementById("invalid-type").innerHTML = "Vui lòng nhập thể loại.";
+            document.getElementById("theloai").focus();
+        } else
+
+            themSach();
+    };
+
+    function xoaInput() {
+        document.getElementById("tensach").value = "";
+        document.getElementById("tacgia").value = "";
+        document.getElementById("theloai").value = "";
+        document.getElementById("libID").value = 1;
+    };
+
+    function themSach() {
+        let book = document.getElementById("tensach").value.trim();
+        let author = document.getElementById("tacgia").value.trim();
+        let type = document.getElementById("theloai").value.trim();
+        let libid = document.getElementById("libID").value = 1;
+        let data = {
+            tensach: book + "", tacgia: author + "", theloai: type + " ", libId: parseInt(libid)
+        };
+        $.ajax({
+            type: "POST",
+            url: window.location.origin + "/Services/BookServices.asmx/AddBook",
+            data: JSON.stringify(data),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json"
+        }).then(res => {
+            if (res.d == -1) {
+                showInfoToast("Thông báo", "Sách đã tồn tại");
+            } else {
+                showSucceedToast("Thành công", "Thêm sách thành công");
+                xoaInput();
+            }
+        });
+    }
+
+</script>
