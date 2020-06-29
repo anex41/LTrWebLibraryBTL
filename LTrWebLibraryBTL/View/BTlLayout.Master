@@ -1,6 +1,7 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="BTlLayout.master.cs" Inherits="LTrWebLibraryBTL.View.BTlLayout" %>
 
 <%@ Register TagPrefix="User" TagName="DangNhap" Src="~/UserControl/LoginUserControl.ascx" %>
+<%@ Register TagPrefix="Login" TagName="DoiMatKhau" Src="~/UserControl/ChangePasswordUserControl.ascx" %>
 
 <!DOCTYPE html>
 
@@ -70,9 +71,10 @@
                 <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="sr-only">Toggle Dropdown</span>
                 </button>
-                <div class="dropdown-menu dropdown-menu-right" style="cursor:pointer;">
+                <div class="dropdown-menu dropdown-menu-right" style="cursor: pointer;">
                     <a id="adminRoleA" runat="server" clientidmode="Static" class="dropdown-item" onclick="redirectA('admin')">Quản Lý</a>
                     <a id="clientRoleA" runat="server" clientidmode="Static" class="dropdown-item" onclick="redirectA('passw')">Đổi mật khẩu</a>
+                    <button hidden type="button" id="buttonDoiMatKhau" data-toggle="modal" data-target="#modalDoiMatKhau"></button>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" onclick="signOut()">Đăng xuất</a>
                 </div>
@@ -98,6 +100,7 @@
             </div>
         </div>
     </div>
+    <Login:DoiMatKhau ID="DivDoiMatKhau" ClientIDMode="static" runat="server"></Login:DoiMatKhau>
     <footer class="container footer">
         <p>© 2020 Thư Viện Sách, Bài tập lớn môn Lập trình Web.</p>
     </footer>
@@ -112,6 +115,7 @@
                     window.location = location.origin + "/View/server/ServerSideControl";
                     break;
                 case "passw":
+                    document.getElementById("buttonDoiMatKhau").click();
                     //window.location = location.origin + "/View/server/ServerSideControl";
                     break;
             }
