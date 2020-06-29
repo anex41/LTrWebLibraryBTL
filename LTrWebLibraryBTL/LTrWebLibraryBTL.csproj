@@ -169,6 +169,7 @@
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
     <Content Include="Scripts\toastController.js" />
+    <Content Include="Services\BookServices.asmx" />
     <Content Include="Services\LoginServices.asmx" />
     <Content Include="Services\UserServices.asmx" />
     <Content Include="UserControl\BookManageUserControl.ascx" />
@@ -315,8 +316,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Model\BookModel.cs" />
     <Compile Include="Model\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\BookServices.asmx.cs">
+      <DependentUpon>BookServices.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Services\LoginServices.asmx.cs">
       <DependentUpon>LoginServices.asmx</DependentUpon>
       <SubType>Component</SubType>

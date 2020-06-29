@@ -27,20 +27,12 @@ create table tblLibrary (
 
 drop table tblLibrary
 
-/* tạo bảng loại sách */
-create table tblloaisach (
-	iMaloaisach int identity(1,1) NOT NULL,
-	sTenloaisach NVARCHAR(30)  NULL
-)
-
 /* tạo bảng sách */
 create table tblSach (
-	iMasach int identity(1,1) NOT NULL,
-	iMaloaisach	INT NULL,
+	iMasach int identity(1,1) NOT NULL primary key,
 	sTensach NVARCHAR(50) NULL,
-	fSoluong int NULL,
-	sChude NVARCHAR(50) NULL,
-	fGiathue float NULL
+	sTacgia NVARCHAR(50) NULL,
+	sTheloai NVARCHAR(50) NULL
 )
 
 drop table tblSach
@@ -66,27 +58,6 @@ create table tblChitietphieumuon(
 
 drop table tblChitietphieumuon
 
-alter table tblChitietphieumuon
-add
-CONSTRAINT FK_iMaSach  FOREIGN KEY(iMaSach) REFERENCES tblSach(iMaSach);
-/* tạo proc thêm loại sách */
-create proc Addloaisach @tenloaisach NVARCHAR(30)
-as
-	insert into tblloaisach(sTenloaisach)
-	values (@tenloaisach)
-
-/* tạo proc thêm sách */
-create proc Addsach	@maloaisach	INT, @tensach NVARCHAR(50), @soluong float, @chude NVARCHAR(50), @giathue float 
-as
-	insert into tblSach(iMaloaisach,sTensach,fSoluong,sChude,fGiathue)
-	values (@maloaisach,@tensach,@soluong,@chude,@giathue)
-
-/* tạo proc thêm số lượng sách */
-create proc Addsoluongsach	@masach	INT, @soluong float
-	as
-	update tblSach
-	set fSoluong = fSoluong + @soluong
-	where iMasach=@masach
 
 /* tạo phiếu mượn và chi tiết phiếu mượn 
 create proc Addphieumuon @userid INT, @ngaythue DATE, @ngaytra DATE, @masach INT, @soluongthue FLOAT, @giathue DATE
@@ -145,6 +116,21 @@ as
 	END
 
 drop proc addLibraryUser
+
+/*tạo proc thêm sách */
+create proc addBook
+@tenSach nvarchar (50),
+@theloai nvarchar(50),
+@tacgia nvarchar(50),
+@libraryId int
+as
+	BEGIN
+		insert into tblSach
+		values (@tenSach,@theloai,@tacgia)
+
+		insert into tblBookAndLibrary
+		values (SCOPE_IDENTITY(), @libraryId, 1)
+	END
 
 /* tạo proc lấy thông tin người dùng theo id */
 
@@ -255,6 +241,7 @@ EXEC @return_status = signUpProc @account="tuanthanh", @password="95251db4046d86
 			@name ="Đinh Tún Thạch", @email = "thanh@xmail.com", @address="Hà Nội", @library = 1;  
 SELECT 'Return Status' = @return_status;  
 GO
+select * from tblLibraryUser
 /*
 taipham-pass tai3110
 thanhdinh-pass thanh123
