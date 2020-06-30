@@ -30,6 +30,8 @@ namespace LTrWebLibraryBTL.Services
         public Array GetUserList()
         {
             if (Session["currentLibrary"] == null) return null;
+            if (Session["currentAccount"] == null) return null;
+            string acc = Session["currentAccount"].ToString();
             List<UserModel> uml = new List<UserModel>();
             SqlCommand cmd = new SqlCommand("getLibraryUserList", con);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -41,13 +43,16 @@ namespace LTrWebLibraryBTL.Services
             {
                 while (rdr.Read())
                 {
-                    UserModel um = new UserModel();
-                    um.UserId = int.Parse(rdr["userId"].ToString());
-                    um.UserAccount = (rdr["userAccount"].ToString());
-                    um.UserDisplayName = (rdr["userDisplayName"].ToString());
-                    um.UserStatus = int.Parse(rdr["userStatus"].ToString());
-                    um.UserRole = int.Parse(rdr["userRole"].ToString());
-                    uml.Add(um);
+                    if (string.Compare(rdr["userAccount"].ToString(), acc) != 0)
+                    {
+                        UserModel um = new UserModel();
+                        um.UserId = int.Parse(rdr["userId"].ToString());
+                        um.UserAccount = (rdr["userAccount"].ToString());
+                        um.UserDisplayName = (rdr["userDisplayName"].ToString());
+                        um.UserStatus = int.Parse(rdr["userStatus"].ToString());
+                        um.UserRole = int.Parse(rdr["userRole"].ToString());
+                        uml.Add(um);
+                    }
                 }
                 con.Close();
             }
