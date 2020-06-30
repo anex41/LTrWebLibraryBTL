@@ -213,7 +213,7 @@ as
 
 drop proc getLibraryUserList
 
-exec getLibraryUserList @libraryID = 1
+exec getLibraryUserList @libraryID = 2
 
 /* tạo proc kích hoạt người dùng */
 
