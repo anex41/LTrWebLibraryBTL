@@ -66,12 +66,6 @@ insert into tblPhieumuon(userId,Ngaythue,Ngaytra)
 values (@userid, @ngaythue, @ngaytra)
 insert into tblChitietphieumuon(iMasach,fSoluongthue,fGiathue)
 */
-/* tạo proc lấy ra các sách cùng thể loại*/
-create proc returnsachcungloai @maloai INT
-as
-	select tblSach.sTensach,sChude,tblloaisach.sTenloaisach
-	from tblSach,tblloaisach
-	where  tblSach.iMaloaisach=@maloai and tblloaisach.iMaloaisach = tblSach.iMaloaisach
 
 
 
