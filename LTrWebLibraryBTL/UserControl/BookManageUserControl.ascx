@@ -52,19 +52,8 @@
             </div>
         </div>
         <div class="tab-pane fade" id="listBook" role="tabpanel" aria-labelledby="profile-tab">
-            <div class="col-md-12 order-md-1">
-                <div class="row">
-                    <div class="col-md-10 mb-3">
-                        Đây là 1 danh sách sách!
-                    </div>
-                    <div class="col-md-1 mb-3">
-                        <button class="btn btn-outline-success btn-lg btn-block" type="submit" style="width: 100% !important; margin: auto;">
-                            <i class="far fa-edit"></i></button>
-                    </div>
-                    <div class="col-md-1 mb-3">
-                        <button class="btn btn-outline-danger btn-lg btn-block" type="submit" style="width: 100% !important; margin: auto;">
-                           <i class="fas fa-trash"></i></button>
-                    </div>
+            <div class="col-md-12 order-md-1" >
+                <div class="row mx-0" id="bookList">
                 </div>
             </div>
         </div>
@@ -72,6 +61,9 @@
 </div>
 
 <script>
+    var bookList = document.getElementById("bookList");
+    getBookList();
+
     function kiemTra() {
         // kiểm tra các thứ nếu đúng hết thì thêm sách
         let book = document.getElementById("tensach").value.trim();
@@ -123,5 +115,31 @@
             }
         });
     }
+
+    function getBookList() {
+        $.ajax({
+            type: "POST",
+            url: window.location.origin + "/Services/BookServices.asmx/GetBookList",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json"
+        }).then(res => {
+            if (res.d !== null) appendResult(res.d);
+            else showErrorToast("Lỗi!", "Không thể lấy được danh sách sách!")
+        });
+    };
+
+    function appendResult(arr) {
+        $(".bookx").remove();
+        for (let i = 0; i < arr.length; i++) {
+            appendBookList(arr[i]);
+        };
+    };
+
+    function appendBookList(item) {
+        $("#bookList").append("<div class=\"bookx col-sm-3 mt-4\"><div class=\"card text-center p-1\"><i class=\"fas fa-book fa-10x\"></i>"
+            + "<div class=\"card-body\"><h5 class=\"card-title\">" + item.Tensach + "</h5><p class=\"card-text\">" + "Tác giả: " + item.Theloai + "</p><p class=\"card-text\">" + "Thể loại: " + item.Tacgia + "</p>"
+            + "<button id=\"book_" + item.Masach + "\" type=\"button\" class=\"btn btn-outline-success\" onclick=\"edit(this.id)\">Sửa</button> <button  id=\"book_" + item.Masach + "\" type=\"button\" class=\"btn btn-outline-danger\" onclick=\"delete(this.id)\">Xóa</button>"
+            + "</div></div></div>");
+    };
 
 </script>

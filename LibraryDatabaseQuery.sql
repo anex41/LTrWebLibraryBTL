@@ -119,18 +119,50 @@ drop proc addLibraryUser
 
 /*tạo proc thêm sách */
 create proc addBook
-@tenSach nvarchar (50),
+@tensach nvarchar (50),
 @theloai nvarchar(50),
 @tacgia nvarchar(50),
 @libraryId int
 as
 	BEGIN
 		insert into tblSach
-		values (@tenSach,@theloai,@tacgia)
+		values (@tensach,@theloai,@tacgia)
 
 		insert into tblBookAndLibrary
 		values (SCOPE_IDENTITY(), @libraryId, 1)
 	END
+
+	drop proc addBook
+
+/*tạo proc sửa sách
+create proc editBook
+@idsach int,
+@tensach nvarchar(50),
+@theloai nvarchar(50),
+@tacgia nvarchar(50)
+as update tblSach
+set sTensach = @tensach, sTheloai = @theloai, sTacgia = @tacgia
+where iMasach = @idsach
+	end
+
+drop proc editBook*/
+
+/* tạo proc lấy danh sách sách*/
+create proc getBookList
+@libraryID int
+as
+	Begin
+		select tblSach.iMasach, tblSach.sTensach, tblSach.sTacgia, tblSach.sTheloai
+		from tblSach, tblBookAndLibrary
+		where tblBookAndLibrary.iMasach = tblSach.iMasach and tblBookAndLibrary.libraryId = @libraryID
+	End
+
+DECLARE @return_status int;  
+EXEC @return_status = changeUserPassword @account = 'anex', @password = '69596fe31f8b339800ca34029a2dc3aa14710b616b043e896e091db62203edf4'
+	, @oldpassword = '05ad5a1bf7ce09dde3fd4f3cde766206321ae61f0fd596f5dfb028d5e461a162';  
+SELECT 'Return Status' = @return_status; 
+
+
 
 /* tạo proc lấy thông tin người dùng theo id */
 
@@ -244,11 +276,6 @@ EXEC @return_status = signUpProc @account="tuanthanh", @password="95251db4046d86
 SELECT 'Return Status' = @return_status;  
 GO
 select * from tblLibraryUser
-/*
-taipham-pass tai3110
-thanhdinh-pass thanh123
-anex-pass trung123
-*/
 
 /* tạo proc đổi mật khẩu */
 create proc changeUserPassword
@@ -283,3 +310,9 @@ DECLARE @return_status int;
 EXEC @return_status = changeUserPassword @account = 'anex', @password = '69596fe31f8b339800ca34029a2dc3aa14710b616b043e896e091db62203edf4'
 	, @oldpassword = '05ad5a1bf7ce09dde3fd4f3cde766206321ae61f0fd596f5dfb028d5e461a162';  
 SELECT 'Return Status' = @return_status; 
+
+/*
+taipham-pass tai3110
+thanhdinh-pass thanh123
+anex-pass trung123
+*/

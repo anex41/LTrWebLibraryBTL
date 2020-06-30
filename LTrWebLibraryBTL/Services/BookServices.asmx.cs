@@ -19,8 +19,8 @@ namespace LTrWebLibraryBTL.Services
     [WebService(Namespace = "http://tempuri.org/")]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     [System.ComponentModel.ToolboxItem(false)]
-    // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
-    // [System.Web.Script.Services.ScriptService]
+    // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line.
+    [System.Web.Script.Services.ScriptService]
     public class BookServices : System.Web.Services.WebService
     {
         static string connStr = ConfigurationManager.ConnectionStrings["myConStr"].ConnectionString;
@@ -64,10 +64,10 @@ namespace LTrWebLibraryBTL.Services
             int result = 0;
             SqlCommand cmd = new SqlCommand("addBook", con);
             cmd.CommandType = CommandType.StoredProcedure;
-            SqlParameter tenSach = cmd.Parameters.Add("@tensach", SqlDbType.VarChar, 50);
-            SqlParameter theLoai = cmd.Parameters.Add("@chude", SqlDbType.VarChar, 50);
-            SqlParameter tacGia = cmd.Parameters.Add("@tacgia", SqlDbType.VarChar, 50);
-            SqlParameter LibraryID = cmd.Parameters.Add("library", SqlDbType.Int);
+            SqlParameter tenSach = cmd.Parameters.Add("tensach", SqlDbType.NVarChar, 50);
+            SqlParameter theLoai = cmd.Parameters.Add("theloai", SqlDbType.NVarChar, 50);
+            SqlParameter tacGia = cmd.Parameters.Add("tacgia", SqlDbType.NVarChar, 50);
+            SqlParameter LibraryID = cmd.Parameters.Add("libraryId", SqlDbType.Int);
 
             tenSach.Value = tensach;
             theLoai.Value = theloai;
