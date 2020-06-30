@@ -124,12 +124,12 @@ function getBookList() {
             contentType: "application/json; charset=utf-8",
             dataType: "json"
         }).then(res => {
-            if (res.d !== null) appendResult(res.d);
+            if (res.d !== null) appendBook(res.d);
             else showErrorToast("Lỗi!", "Không thể lấy được danh sách sách!")
         });
     };
 
-    function appendResult(arr) {
+    function appendBook(arr) {
         $(".bookx").remove();
         for (let i = 0; i < arr.length; i++) {
             appendBookList(arr[i]);
@@ -137,7 +137,7 @@ function getBookList() {
     };
 
     function appendBookList(item) {
-        $("#bookList").append("<div class=\"bookx col-sm-3 mt-4\"><div class=\"card text-center p-1\"><i class=\"fas fa-book fa-10x\"></i>"
+        $("#bookList").append("<div class=\"bookx col-sm-3 mt-12\"><div class=\"card text-center p-1\"><i class=\"fas fa-book fa-10x\"></i>"
             + "<div class=\"card-body\"><h5 class=\"card-title\">" + item.Tensach + "</h5><p class=\"card-text\">" + "Tác giả: " + item.Theloai + "</p><p class=\"card-text\">" + "Thể loại: " + item.Tacgia + "</p>"
             + "<button id=\"book_" + item.Masach + "\" type=\"button\" class=\"btn btn-outline-success\" onclick=\"edit(this.id)\">Sửa</button> <button  id=\"book_" + item.Masach + "\" type=\"button\" class=\"btn btn-outline-danger\" onclick=\"delete(this.id)\">Xóa</button>"
             + "</div></div></div>");
