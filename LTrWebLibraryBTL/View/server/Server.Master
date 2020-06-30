@@ -37,10 +37,7 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Trang chủ</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Không phải trang chủ</a>
+                        <a class="nav-link" onclick="window.location = location.origin + '/View/common/TrangChu'" style="cursor: pointer;">Trang Chủ</a>
                     </li>
                 </ul>
                 <div runat="server" id="divDangNhap" clientidmode="Static" class="text-right">
@@ -92,6 +89,8 @@
                 window.location = location.origin + "/View/common/TrangChu";
             });
         };
+
+        
     </script>
 </body>
 </html>

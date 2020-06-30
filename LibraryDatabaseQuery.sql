@@ -66,14 +66,6 @@ insert into tblPhieumuon(userId,Ngaythue,Ngaytra)
 values (@userid, @ngaythue, @ngaytra)
 insert into tblChitietphieumuon(iMasach,fSoluongthue,fGiathue)
 */
-/* tạo proc lấy ra các sách cùng thể loại*/
-create proc returnsachcungloai @maloai INT
-as
-	select tblSach.sTensach,sChude,tblloaisach.sTenloaisach
-	from tblSach,tblloaisach
-	where  tblSach.iMaloaisach=@maloai and tblloaisach.iMaloaisach = tblSach.iMaloaisach
-
-
 
 /* tạo bảng liên kết giữa người dùng và thư viện */
 
@@ -92,6 +84,12 @@ create table tblBookAndLibrary (
 	libraryId int NOT NULL,
 	statusFlag bit NOT NULL
 )
+alter table tblBookandLibrary
+add constraint PF_BookAndLibrary primary key (iMasach,libraryId)
+
+alter table tblBookandLibrary
+add constraint FK_BookAndLibrary FOREIGN KEY (iMasach) REFERENCES  tblSach(iMasach);
+
 
 drop table tblUserAndLibrary
 
@@ -215,7 +213,7 @@ create proc disapproveUser
 as
 	Begin
 		update tblLibraryUser
-		set tblLibraryUser.userStatus = 0
+		set tblLibraryUser.userStatus = -1
 		where tblLibraryUser.userId = @userId
 	End
 
@@ -254,11 +252,6 @@ EXEC @return_status = signUpProc @account="tuanthanh", @password="95251db4046d86
 SELECT 'Return Status' = @return_status;  
 GO
 select * from tblLibraryUser
-/*
-taipham-pass tai3110
-thanhdinh-pass thanh123
-anex-pass trung123
-*/
 
 /* tạo proc đổi mật khẩu */
 create proc changeUserPassword
@@ -293,3 +286,11 @@ DECLARE @return_status int;
 EXEC @return_status = changeUserPassword @account = 'anex', @password = '69596fe31f8b339800ca34029a2dc3aa14710b616b043e896e091db62203edf4'
 	, @oldpassword = '05ad5a1bf7ce09dde3fd4f3cde766206321ae61f0fd596f5dfb028d5e461a162';  
 SELECT 'Return Status' = @return_status; 
+
+insert into tblLibraryUser ()
+
+/*
+taipham-pass tai3110
+thanhdinh-pass thanh123
+anex-pass trung123
+*/
