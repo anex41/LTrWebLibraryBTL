@@ -119,18 +119,28 @@ drop proc addLibraryUser
 
 /*tạo proc thêm sách */
 create proc addBook
-@tenSach nvarchar (50),
+@tensach  nvarchar (50),
 @theloai nvarchar(50),
 @tacgia nvarchar(50),
 @libraryId int
 as
 	BEGIN
 		insert into tblSach
-		values (@tenSach,@theloai,@tacgia)
+		values (@tensach,@theloai,@tacgia)
 
 		insert into tblBookAndLibrary
 		values (SCOPE_IDENTITY(), @libraryId, 1)
 	END
+/*tạo proc lấy danh sách sách*/
+create proc getBookList
+@libraryID int
+as
+	Begin
+		select tblSach.iMasach, tblSach.sTensach, tblSach.sTacgia, tblSach.sTheloai
+		from tblSach, tblBookAndLibrary
+		where tblBookAndLibrary.iMasach = tblSach.iMasach and tblBookAndLibrary.libraryId = @libraryID
+	End
+	drop proc getBookList
 
 /* tạo proc lấy thông tin người dùng theo id */
 
