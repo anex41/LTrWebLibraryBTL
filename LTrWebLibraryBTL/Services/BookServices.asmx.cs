@@ -83,26 +83,26 @@ namespace LTrWebLibraryBTL.Services
             return result;
         }
 
-<<<<<<< HEAD
         [WebMethod]
-        public void EditBook(int sachId, string tenSach, string theLoai, string tacGia)
+        public void EditBook(int iMasach, string tenSach, string theLoai, string tacGia)
         {
             SqlCommand cmd = new SqlCommand("editBook", con);
             cmd.CommandType = CommandType.StoredProcedure;
-            SqlParameter value = cmd.Parameters.Add("sachId", SqlDbType.Int);
-            value.Value = sachId;
-            SqlParameter ten = cmd.Parameters.Add("tensach", SqlDbType.NVarChar,(50));
+            SqlParameter x = cmd.Parameters.Add("sachId", SqlDbType.Int);
+            x.Value = iMasach;
+            SqlParameter ten = cmd.Parameters.Add("tensach", SqlDbType.NVarChar, (50));
             ten.Value = tenSach;
-            SqlParameter theloai = cmd.Parameters.Add("theloai", SqlDbType.NVarChar,(50));
+            SqlParameter theloai = cmd.Parameters.Add("theloai", SqlDbType.NVarChar, (50));
             theloai.Value = theLoai;
-            SqlParameter tg = cmd.Parameters.Add("tacgia", SqlDbType.NVarChar,(50));
+            SqlParameter tg = cmd.Parameters.Add("tacgia", SqlDbType.NVarChar, (50));
             tg.Value = tacGia;
 
             con.Open();
             cmd.ExecuteNonQuery();
             con.Close();
             return;
-=======
+        }
+
         [WebMethod(enableSession: true)]
         public Array GetBookByTitle(string str)
         {
@@ -133,7 +133,6 @@ namespace LTrWebLibraryBTL.Services
                 return null;
             }
             return bml.ToArray();
->>>>>>> d83daae46a82f1ac07fa9f59bd0f7b5d5d284b2b
         }
     }
 
