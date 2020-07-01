@@ -55,7 +55,6 @@
 
     function appendResult(arr) {
         $(".userx").remove();
-        console.log(arr);
         for (let i = 0; i < arr.length; i++) {
             if (arr[i].UserStatus == -1) appendActivateList(arr[i]);
             else appendDisableList(arr[i]);

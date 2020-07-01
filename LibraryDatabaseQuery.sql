@@ -37,36 +37,6 @@ create table tblSach (
 
 drop table tblSach
 
-/* tạo bảng phiếu mượn */
-create table tblPhieumuon (
-	iMaPhieu int identity(1,1) NOT NULL,
-	userId INT NULL,
-	Ngaythue DATE NULL,
-	Ngaytra DATE NULL,
-	Giahan DATE NULL
-)
-
-drop table tblPhieumuon
-
-/* tạo bảng chi tiết phiếu mượn */
-create table tblChitietphieumuon(
-	iMaphieu int identity(1,1) NOT NULL,
-	iMasach INT NOT NULL, 
-	fSoluongthue int NOT NULL,
-	fGiathue FLOAT NOT NULL
-)
-
-drop table tblChitietphieumuon
-
-
-/* tạo phiếu mượn và chi tiết phiếu mượn 
-create proc Addphieumuon @userid INT, @ngaythue DATE, @ngaytra DATE, @masach INT, @soluongthue FLOAT, @giathue DATE
-as
-insert into tblPhieumuon(userId,Ngaythue,Ngaytra)
-values (@userid, @ngaythue, @ngaytra)
-insert into tblChitietphieumuon(iMasach,fSoluongthue,fGiathue)
-*/
-
 /* tạo bảng liên kết giữa người dùng và thư viện */
 
 create table tblUserAndLibrary (
@@ -130,7 +100,10 @@ as
 		values (SCOPE_IDENTITY(), @libraryId, 1)
 	END
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> d83daae46a82f1ac07fa9f59bd0f7b5d5d284b2b
 /*tạo proc lấy danh sách sách*/
 create proc getBookList
 @libraryID int
@@ -290,6 +263,21 @@ EXEC @return_status = changeUserPassword @account = 'anex', @password = '69596fe
 	, @oldpassword = '05ad5a1bf7ce09dde3fd4f3cde766206321ae61f0fd596f5dfb028d5e461a162';  
 SELECT 'Return Status' = @return_status; 
 
+<<<<<<< HEAD
+/*tạo proc sửa thông tin sách*/
+create proc editBook
+@sachId int,
+@tensach nvarchar (50),
+@theloai nvarchar (50),
+@tacgia nvarchar (50)
+as
+	begin
+	update tblSach
+		set tblSach.sTensach = @tensach, tblSach.sTacgia = @tacgia, tblSach.sTheloai = @theloai
+		where tblSach.iMasach = @sachId
+	End
+=======
+>>>>>>> d83daae46a82f1ac07fa9f59bd0f7b5d5d284b2b
 
 /*
 taipham-pass tai3110

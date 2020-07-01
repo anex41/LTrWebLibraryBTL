@@ -61,6 +61,53 @@
     </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Sửa thông tin sách</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+                <div class="col-md-12 order-md-1">
+                    <form class="needs-validation" novalidate="">
+                        <div class="row">                          
+                            <div class="col-md-6 mb-3">
+                                <label>Tên sách</label>
+                                <input type="text" class="form-control" id="ts" placeholder="Hóa học 12" value="" required="">
+                                <div id="invalid-ts" style="color: red;">
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label>Tên tác giả</label>
+                                <input type="text" class="form-control" id="tg" value="" required="">
+                                <div id="invalid-tg" style="color: red;">
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label>Thể loại</label>
+                                <input type="text" class="form-control" id="tl" value="" required="" placeholder="Trinh thám, Tiểu thuyết....">
+                                <div id="invalid-tl" style="color: red;">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="reset" class="btn btn-secondary" data-dismiss="modal" >Hủy</button>
+        <button type="button" class="btn btn-primary" onclick="kiemtraLuu()">Lưu</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <script>
     var bookList = document.getElementById("bookList");
     getBookList();
@@ -77,13 +124,31 @@
         } else if (author == "") {
             document.getElementById("invalid-author").innerHTML = "Vui lòng nhập tên tác giả.";
             document.getElementById("tacgia").focus();
-        }
-        else if (type == "") {
+        } else if (type == "") {
             document.getElementById("invalid-type").innerHTML = "Vui lòng nhập thể loại.";
             document.getElementById("theloai").focus();
         } else
 
             themSach();
+    };
+
+    function kiemtraLuu() {
+        let a = document.getElementById("ts").value.trim();
+        let b = document.getElementById("tg").value.trim();
+        let c = document.getElementById("tl").value.trim();
+
+        if (a == "") {
+            document.getElementById("invalid-ts").innerHTML = "Vui lòng nhập tên sách.";
+            document.getElementById("ts").focus();
+        } else if (b == "") {
+            document.getElementById("invalid-tg").innerHTML = "Vui lòng nhập tên tác giả.";
+            document.getElementById("tg").focus();
+        } else if (c == "") {
+            document.getElementById("invalid-tl").innerHTML = "Vui lòng nhập thể loại.";
+            document.getElementById("tl").focus();
+        } else
+
+            editBoo();
     };
 
     function xoaInput() {
@@ -139,9 +204,27 @@ function getBookList() {
     function appendBookList(item) {
         $("#bookList").append("<div class=\"bookx col-sm-3 mt-12\"><div class=\"card text-center p-1\"><i class=\"fas fa-book fa-10x\"></i>"
             + "<div class=\"card-body\"><h5 class=\"card-title\">" + item.Tensach + "</h5><p class=\"card-text\">" + "Tác giả: " + item.Theloai + "</p><p class=\"card-text\">" + "Thể loại: " + item.Tacgia + "</p>"
-            + "<button id=\"book_" + item.Masach + "\" type=\"button\" class=\"btn btn-outline-success\" onclick=\"edit(this.id)\">Sửa</button> <button  id=\"book_" + item.Masach + "\" type=\"button\" class=\"btn btn-outline-danger\" onclick=\"delete(this.id)\">Xóa</button>"
-            + "</div></div></div>");
+            + "<button id=\"book_" + item.Masach + "\" type=\"button\" class=\"btn btn-outline-success\" data-toggle=\"modal\" data-target=\"#editModal\" onclick=\"getID(this.id)\">Sửa</button>" + "</div></div></div>");
     };
 
+    function editBook(data) {
+        data = { "iMasach": parseInt(data.split("_")[1]) };
+        console.log(data);
+        $.ajax({
+            type: "POST",
+            url: window.location.origin + "/Services/BookServices.asmx/EditBook",
+            data: JSON.stringify(data),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json"
+        }).then(res => {
+            getBookList();
+            showSucceedToast("Thành công!", "Sửa sách thành công");
+        });
+    };
+
+    function getID(value) {
+        let data = { "iMasach": parseInt(value.split("_")[1]) };
+        editBook(data);
+    };
 
 </script>
