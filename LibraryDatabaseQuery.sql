@@ -54,11 +54,13 @@ create table tblBookAndLibrary (
 	libraryId int NOT NULL,
 	statusFlag bit NOT NULL
 )
-alter table tblBookandLibrary
-add constraint PF_BookAndLibrary primary key (iMasach,libraryId)
+drop table tblBookAndLibrary
 
 alter table tblBookandLibrary
-add constraint FK_BookAndLibrary FOREIGN KEY (iMasach) REFERENCES  tblSach(iMasach);
+add constraint PK_BookAndLibrary primary key (iMasach,libraryId)
+
+alter table tblBookandLibrary
+add constraint FK_BookAndLibrary_Book FOREIGN KEY (iMasach) REFERENCES  tblSach(iMasach);
 
 
 drop table tblUserAndLibrary
