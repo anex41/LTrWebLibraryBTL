@@ -109,6 +109,7 @@
 
 
 <script>
+    var x;
     var bookList = document.getElementById("bookList");
     getBookList();
 
@@ -137,6 +138,12 @@
         document.getElementById("tacgia").value = "";
         document.getElementById("theloai").value = "";
         document.getElementById("libID").value = 1;
+    };
+
+    function xoaInputEdit() {
+        document.getElementById("ts").value= "";
+        document.getElementById("tg").value= "";
+        document.getElementById("tl").value = "";
     };
 
     function themSach() {
@@ -188,25 +195,43 @@ function getBookList() {
             + "<button id=\"book_" + item.Masach + "\" type=\"button\" class=\"btn btn-outline-success\" data-toggle=\"modal\" data-target=\"#editModal\" onclick=\"getID(this.id)\">Sửa</button>" + "</div></div></div>");
     };
 
-    function getID(value) {
-        let x = { "iMasach": parseInt(value.split("_")[1]) };
-        
-            //editBook(x);
-        
+    function kiemtraLuu() {
+        let a = document.getElementById("ts").value.trim();
+        let b = document.getElementById("tg").value.trim();
+        let c = document.getElementById("tl").value.trim();
+
+        if (a == "") {
+            document.getElementById("invalid-ts").innerHTML = "Vui lòng nhập tên sách.";
+            document.getElementById("ts").focus();
+        } else if (b == "") {
+            document.getElementById("invalid-tg").innerHTML = "Vui lòng nhập tên tác giả.";
+            document.getElementById("tg").focus();
+        } else if (c == "") {
+            document.getElementById("invalid-tl").innerHTML = "Vui lòng nhập thể loại.";
+            document.getElementById("tl").focus();
+        } else {
+            let data = {
+                iMasach: x, tenSach: a + "", tacGia: b + "", theLoai: c + " "
+            };
+            //console.log(JSON.stringify(data));
+            $.ajax({
+                type: "POST",
+                url: window.location.origin + "/Services/BookServices.asmx/EditBook",
+                data: JSON.stringify(data),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json"
+            }).then(res => {
+                getBookList();
+                showSucceedToast("Thành công!", "Sửa sách thành công");
+            });
+            xoaInputEdit();
+            $('#editModal').modal('hide');
+        }
+
     };
 
-    function editBook(x) {
-        //console.log(data);
-        $.ajax({
-            type: "POST",
-            url: window.location.origin + "/Services/BookServices.asmx/EditBook",
-            data: JSON.stringify(x),
-            contentType: "application/json; charset=utf-8",
-            dataType: "json"
-        }).then(res => {
-            getBookList();
-            showSucceedToast("Thành công!", "Sửa sách thành công");
-        });
+    function getID(value) {
+        x = parseInt(value.split("_")[1]) ;
     };
 
 </script>
