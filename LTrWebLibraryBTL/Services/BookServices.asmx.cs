@@ -82,5 +82,26 @@ namespace LTrWebLibraryBTL.Services
             con.Close();
             return result;
         }
+
+        [WebMethod]
+        public void EditBook(int sachId, string tenSach, string theLoai, string tacGia)
+        {
+            SqlCommand cmd = new SqlCommand("editBook", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlParameter value = cmd.Parameters.Add("sachId", SqlDbType.Int);
+            value.Value = sachId;
+            SqlParameter ten = cmd.Parameters.Add("tensach", SqlDbType.NVarChar,(50));
+            ten.Value = tenSach;
+            SqlParameter theloai = cmd.Parameters.Add("theloai", SqlDbType.NVarChar,(50));
+            theloai.Value = theLoai;
+            SqlParameter tg = cmd.Parameters.Add("tacgia", SqlDbType.NVarChar,(50));
+            tg.Value = tacGia;
+
+            con.Open();
+            cmd.ExecuteNonQuery();
+            con.Close();
+            return;
+        }
     }
+
 }
