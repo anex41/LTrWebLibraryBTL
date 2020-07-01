@@ -12,12 +12,14 @@ namespace LTrWebLibraryBTL.Model
         private string sTacgia;
         private string sTheloai;
         private int libraryId;
+        private string libraryName;
 
         public int Masach { get; set; }
         public string Tensach { get; set; }
         public string Tacgia { get; set; }
         public string Theloai { get; set; }
         public int LibraryId { get; set; }
+        public string LibraryName { get; set; }
 
         public BookModel() { }
     }

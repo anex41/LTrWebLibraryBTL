@@ -83,6 +83,7 @@ namespace LTrWebLibraryBTL.Services
             return result;
         }
 
+<<<<<<< HEAD
         [WebMethod]
         public void EditBook(int sachId, string tenSach, string theLoai, string tacGia)
         {
@@ -101,6 +102,38 @@ namespace LTrWebLibraryBTL.Services
             cmd.ExecuteNonQuery();
             con.Close();
             return;
+=======
+        [WebMethod(enableSession: true)]
+        public Array GetBookByTitle(string str)
+        {
+            List<BookModel> bml = new List<BookModel>();
+            SqlCommand cmd = new SqlCommand("searchBookByTitle", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlParameter searchString = cmd.Parameters.Add("searchValue", SqlDbType.NVarChar, 30);
+            searchString.Value = str;
+            con.Open();
+            SqlDataReader rdr = cmd.ExecuteReader();
+            if (rdr.HasRows)
+            {
+                while (rdr.Read())
+                {
+                    BookModel bm = new BookModel();
+                    bm.Masach = int.Parse(rdr["iMasach"].ToString());
+                    bm.Tensach = (rdr["sTensach"].ToString());
+                    bm.Tacgia = (rdr["sTacgia"].ToString());
+                    bm.Theloai = (rdr["sTheloai"].ToString());
+                    bm.LibraryName = (rdr["libraryName"].ToString());
+                    bml.Add(bm);
+                }
+                con.Close();
+            }
+            else
+            {
+                con.Close();
+                return null;
+            }
+            return bml.ToArray();
+>>>>>>> d83daae46a82f1ac07fa9f59bd0f7b5d5d284b2b
         }
     }
 

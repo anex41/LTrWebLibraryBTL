@@ -58,8 +58,8 @@
                         </li>
                     </ul>
                     <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm gì đó?" aria-label="Search">
-                        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+                        <input id="searchInput" class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm gì đó?" aria-label="Search">
+                        <button class="btn btn-outline-primary my-2 my-sm-0" type="button" onclick="timKiemSach()"><i class="fas fa-search"></i></button>
                     </form>
                 </div>
             </nav>
@@ -120,6 +120,7 @@
                     break;
             }
         };
+
         function signOut() {
             $.ajax({
                 type: "POST",
@@ -129,6 +130,11 @@
             }).then(res => {
                 window.location.reload();
             });
+        };
+
+        function timKiemSach() {
+            let searchValue = encodeURIComponent("search=" + document.getElementById("searchInput").value.trim());
+            window.location = location.origin + "/View/common/TimKiem?" + searchValue;
         };
     </script>
 </body>

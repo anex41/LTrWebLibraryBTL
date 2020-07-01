@@ -148,7 +148,7 @@
             document.getElementById("tl").focus();
         } else
 
-            editBook();
+            editBoo();
     };
 
     function xoaInput() {
@@ -226,7 +226,5 @@ function getBookList() {
         let data = { "iMasach": parseInt(value.split("_")[1]) };
         editBook(data);
     };
-
-
 
 </script>

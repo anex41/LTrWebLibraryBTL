@@ -179,6 +179,7 @@
     <Content Include="UserControl\ReaderUserControl.ascx" />
     <Content Include="View\client\UserSignup.aspx" />
     <Content Include="View\common\GioiThieu.aspx" />
+    <Content Include="View\common\TimKiem.aspx" />
     <Content Include="View\common\TrangChu.aspx" />
     <Content Include="View\server\ServerSideControl.aspx" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
@@ -408,6 +409,13 @@
     </Compile>
     <Compile Include="View\common\GioiThieu.aspx.designer.cs">
       <DependentUpon>GioiThieu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\common\TimKiem.aspx.cs">
+      <DependentUpon>TimKiem.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\common\TimKiem.aspx.designer.cs">
+      <DependentUpon>TimKiem.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\common\TrangChu.aspx.cs">
       <DependentUpon>TrangChu.aspx</DependentUpon>
