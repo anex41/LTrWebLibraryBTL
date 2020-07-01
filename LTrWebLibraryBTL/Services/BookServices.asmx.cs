@@ -82,5 +82,37 @@ namespace LTrWebLibraryBTL.Services
             con.Close();
             return result;
         }
+
+        [WebMethod(enableSession: true)]
+        public Array GetBookByTitle(string str)
+        {
+            List<BookModel> bml = new List<BookModel>();
+            SqlCommand cmd = new SqlCommand("searchBookByTitle", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlParameter searchString = cmd.Parameters.Add("searchValue", SqlDbType.NVarChar, 30);
+            searchString.Value = str;
+            con.Open();
+            SqlDataReader rdr = cmd.ExecuteReader();
+            if (rdr.HasRows)
+            {
+                while (rdr.Read())
+                {
+                    BookModel bm = new BookModel();
+                    bm.Masach = int.Parse(rdr["iMasach"].ToString());
+                    bm.Tensach = (rdr["sTensach"].ToString());
+                    bm.Tacgia = (rdr["sTacgia"].ToString());
+                    bm.Theloai = (rdr["sTheloai"].ToString());
+                    bm.LibraryName = (rdr["libraryName"].ToString());
+                    bml.Add(bm);
+                }
+                con.Close();
+            }
+            else
+            {
+                con.Close();
+                return null;
+            }
+            return bml.ToArray();
+        }
     }
 }
