@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="BTLContent" runat="server">
     <div id="trangchuDiv" class="container content">
-        <h2 class="text-center">Thư Viện Online Xịn Xò Con Bò</h2>
+        <h2 class="text-center">Thư Viện Online</h2>
         <p class="lead text-center">Thư viện Sách Online là nơi bạn có thể mượn sách để đọc và chia sẻ kiến thức. </p>
         <hr>
         <ul class="center-block row" style="list-style-type: none">

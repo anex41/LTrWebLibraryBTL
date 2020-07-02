@@ -29,13 +29,13 @@
         function appendSearchResult(arr, flag) {
             if (flag) {
                 for (let i = 0; i < arr.length; i++) {
-                    $("#danhSachTimKiem").append("<div class=\"col-md-4 mb-3\"><div class= \"card text-center p-3\"><i class=\"fas fa-book fa-10x\"></i>"
+                    $("#danhSachTimKiem").append("<div class=\"col-md-4 mb-3\"\style=\"margin-top: 20px\"><div class= \"card text-center p-3\"><i class=\"fas fa-book fa-6x\"></i>"
                         + "<div class=\"card-body\"><h5 class=\"card-title\">" + arr[i].Tensach + "</h5><div class=\"text-justify row mx-0\">"
-                        + "<div class=\"col-md-12 mb-2\"><div class=\"row mx-0\"><div class=\"col-md-3\"> Thể Loại:"
-                        + "</div><div class=\"col-md-9\">" + arr[i].Theloai + "</div></div></div><div class=\"col-md-12 mb-2\"><div class=\"row mx-0\">"
-                        + "<div class=\"col-md-3\">Tác giả:</div><div class=\"col-md-9\">" + arr[i].Tacgia + "</div></div></div><div class=\"col-md-12 mb-2\">"
-                        + "<div class=\"row mx-0\"><div class=\"col-md-3\">Thư Viện:</div><div class=\"col-md-9\">"
-                        + arr[i].LibraryName + "</div></div></div></div><button type=\"button\" class=\"btn btn-primary\">Mượn nhưng chưa mượn được</button>"
+                        + "<div class=\"col-md-12 mb-2\"><div class=\"row mx-0\"><div class=\"col-md-6\"> Thể Loại:"
+                        + "</div><div class=\"col-md-6\">" + arr[i].Theloai + "</div></div></div><div class=\"col-md-12 mb-2\"><div class=\"row mx-0\">"
+                        + "<div class=\"col-md-6\">Tác giả:</div><div class=\"col-md-6\">" + arr[i].Tacgia + "</div></div></div><div class=\"col-md-12 mb-2\">"
+                        + "<div class=\"row mx-0\"><div class=\"col-md-6\">Thư Viện:</div><div class=\"col-md-6\">"
+                        + arr[i].LibraryName + "</div></div></div></div>"
                         + "</div></div></div>");
                 };
             } else {
