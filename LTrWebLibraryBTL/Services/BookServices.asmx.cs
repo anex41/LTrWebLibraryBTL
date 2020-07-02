@@ -107,7 +107,7 @@ namespace LTrWebLibraryBTL.Services
         public Array GetBookByTitle(string str)
         {
             List<BookModel> bml = new List<BookModel>();
-            SqlCommand cmd = new SqlCommand("searchBookByTitle", con);
+            SqlCommand cmd = new SqlCommand("searchBookByType", con);
             cmd.CommandType = CommandType.StoredProcedure;
             SqlParameter searchString = cmd.Parameters.Add("searchValue", SqlDbType.NVarChar, 30);
             searchString.Value = str;
