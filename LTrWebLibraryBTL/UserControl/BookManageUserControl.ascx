@@ -118,18 +118,30 @@
         let author = document.getElementById("tacgia").value.trim();
         let type = document.getElementById("theloai").value.trim();
 
-        if (book == "") {
-            document.getElementById("invalid-bookName").innerHTML = "Vui lòng nhập tên sách.";
+        if (book == "" || book.length < 5) {
+            document.getElementById("invalid-bookName").innerHTML = "Vui lòng nhập tên sách và trên 5 ký tự.";
             document.getElementById("tensach").focus();
-        } else if (author == "") {
-            document.getElementById("invalid-author").innerHTML = "Vui lòng nhập tên tác giả.";
+        } else {
+            document.getElementById("invalid-bookName").innerHTML = "";
+        }
+        if (author == "" || author.length < 5) {
+            document.getElementById("invalid-author").innerHTML = "Vui lòng nhập tên tác giả và trên 5 ký tự.";
             document.getElementById("tacgia").focus();
-        } else if (type == "") {
-            document.getElementById("invalid-type").innerHTML = "Vui lòng nhập thể loại.";
+        }
+        else {
+            document.getElementById("invalid-author").innerHTML = "";
+        }
+        if (type == "" || type.length < 5) {
+            document.getElementById("invalid-type").innerHTML = "Vui lòng nhập thể loại và trên 5 ký tự.";
             document.getElementById("theloai").focus();
-        } else
-
+        } else { document.getElementById("invalid-type").innerHTML = "";}
+         if (book != "" && author != "" && type != "") {
+            document.getElementById("invalid-bookName").innerHTML = "";
+             document.getElementById("invalid-author").innerHTML = "";
+             document.getElementById("invalid-type").innerHTML = "";
             themSach();
+        }
+            
     };
 
     function xoaInput() {

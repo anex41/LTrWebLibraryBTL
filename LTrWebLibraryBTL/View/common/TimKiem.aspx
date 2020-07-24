@@ -7,6 +7,7 @@
     </div>
     <script>
         layTuKhoa();
+        //tytytyty
         function layTuKhoa() {
             let currentUrl = window.location.href.split("?")[1];
             let data = { "str": decodeURIComponent(currentUrl).split("=")[1] };
